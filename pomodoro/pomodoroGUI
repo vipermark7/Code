@@ -1,9 +1,12 @@
 #gui code for pomodoro timer
 
-import wx
-
-app = wx.App(False)
-frame = wx.Frame(None, wx.ID_ANY, 'Hello World')
-frame.show(True)
-app.MainLoop()
-
+#!/usr/bin/python
+import tkinter
+class simpleapp_tk(Tkinter.Tk):
+    def__init__(self,parent):
+        Tkinter.Tk.__init__(self,parent)
+        self.parent = parent
+        self.initialize()
+    def initialize(self)
+        pass
+        
