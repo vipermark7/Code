@@ -5,10 +5,10 @@ org.eclipse.debug.ui.PREF_CHANGED_VALUE_BACKGROUND=150,80,115
 org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<launchPerspectives/>\r\n
 org.eclipse.debug.ui.cancel_launch_with_compile_errors=always
 org.eclipse.debug.ui.changedDebugElement=255,128,128
-org.eclipse.debug.ui.consoleBackground=16,16,32
-org.eclipse.debug.ui.errorColor=0,255,0
-org.eclipse.debug.ui.inColor=208,208,208
-org.eclipse.debug.ui.outColor=208,208,208
+org.eclipse.debug.ui.consoleBackground=30,30,30
+org.eclipse.debug.ui.errorColor=204,223,50
+org.eclipse.debug.ui.inColor=216,216,216
+org.eclipse.debug.ui.outColor=216,216,216
 overriddenByCSS=,org.eclipse.debug.ui.MemoryHistoryKnownColor,org.eclipse.debug.ui.MemoryHistoryUnknownColor,org.eclipse.debug.ui.PREF_CHANGED_VALUE_BACKGROUND,org.eclipse.debug.ui.changedDebugElement,org.eclipse.debug.ui.consoleBackground,org.eclipse.debug.ui.errorColor,org.eclipse.debug.ui.inColor,org.eclipse.debug.ui.outColor,
 predarkestdark.org.eclipse.debug.ui.MemoryHistoryKnownColor=235,235,235
 predarkestdark.org.eclipse.debug.ui.MemoryHistoryUnknownColor=170,175,185
