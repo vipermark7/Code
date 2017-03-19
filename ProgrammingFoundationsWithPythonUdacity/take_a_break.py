@@ -1,3 +1,12 @@
 import webbrowser as wb
+import time
 
-wb.open("https://www.youtube.com/watch?v=pY1PMX63x9s&index=9&list=PLRK3jHoqRg451pQ4U0ywZ1o56YeeDQlXp")
+totalBreaks = 3
+breakCount = 0
+
+print("This program started on "+time.ctime())
+while(breakCount < totalBreaks)
+    time.sleep(2*60*60)
+    webbrowser.open("http://www.adweek.com/core/wp-content/uploads/sites/socialtimes/2014/10/keyboard-break.jpg")
+    breakCount = breakCount + 1
+    
