@@ -1,7 +1,0 @@
-	package testSTUFF2;
-	
-	public class BabysitterCalc {
-		public static int calculate(int start, int end) {
-			return 0; 
-		}
-	}
