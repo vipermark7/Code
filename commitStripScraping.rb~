@@ -1,5 +1,0 @@
-require 'nokogiri'
-require 'open-uri' #opens URLs :) 
-require 'mechanize'
-
-five_newest_comics = Array.new()
