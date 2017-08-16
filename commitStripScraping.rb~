@@ -3,6 +3,7 @@ require 'httparty'
 require 'pry'
 require 'json'
 require 'csv'
+# require mechanize 
 five_newest_comics = []
 
 # we want to get stuff wih <a href> type elements
