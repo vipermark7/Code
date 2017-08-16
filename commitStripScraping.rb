@@ -17,7 +17,7 @@ parse_page.css('.excerpts')
 
 # attempting to access/download each comic even though there are multiple
 # divs all identically named "excerpt"
-page.css('.excerpts')css.('.excerpt').each do |div|
+parse_page.css('.excerpts')css.('.excerpt').each do |div|
   a_tag = div.at_xpath('.//div[@id="results_list"]/a')
   puts a_tag.text
 end
