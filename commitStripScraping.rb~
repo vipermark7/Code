@@ -18,7 +18,6 @@ def comics_rss_scrape(xml_feed_string)
     end
     rss_results.each do |el|
       puts el
-    end  
     return rss_results
 end
 
@@ -28,4 +27,3 @@ end
 # this function can probably be applied to other websites to automate web scraping, 
 #    but they MAY have different ways to hold the data
 comics_rss_scrape('http://www.commitstrip.com/en/feed/')
-
