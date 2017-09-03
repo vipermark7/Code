@@ -9,13 +9,12 @@ def comics_rss_scrape(xml_feed_string)
     rss = RSS::Parser.parse(open(xml_feed_string).read, false).items[0..4]
 
     rss.each do |result|
-        result = 
-        { 
+        result = { 
            title: result.title,
            date: result.pubDate,
            link: result.link,
-           description: result.description, 
-           src: result.src
+           description: result.description,
+           content: result.content_encoded.CDATA.p.image_src
         }
         rss_results.push(result)
     end
@@ -26,6 +25,7 @@ end
 #    to get the actual comics
 
 # TODO: figure out how to store comic links, images, and possibly related records!!!!!!!!!!!
+# file systems are preferred to databases in regards to image storage, good to use with open source compression software!
 
 # this function can probably be applied to other websites to automate web scraping, 
 #    but they MAY have different ways to hold the data
@@ -34,8 +34,9 @@ print(comics_rss_scrape('http://www.commitstrip.com/en/feed/'))
 def get_comic_images(rss_results_array)
     agent = Mechanize.new
     rss_results_array.each do |result|
-        agent.get(result.src).save "images/#{File.basename(url)}"
+        agent.get(result.content).save "images/#{File.basename(url)}"
     end
 end
 
 get_comic_images(rss_results)
+
