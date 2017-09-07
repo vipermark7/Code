@@ -46,3 +46,5 @@ end
 get_comic_images(rss_results)
 
 # xpath documentation: https://developer.mozilla.org/en-US/docs/Web/XPath
+# XPath: //item/content-encoded returns all content-encoded returns all
+# content-encoded stuff in document
