@@ -13,7 +13,9 @@ def comics_rss_scrape(xml_feed_string)
           title: result.title,
           date: result.pubDate,
           link: result.link,
-          description: result.description 
+          description: result.description
+          # XPath: //item/content-encoded returns all content-encoded returns all
+          # content-encoded stuff in document
         }
         rss_results.push(result)
     end
@@ -36,6 +38,7 @@ comics_rss_scrape('http://www.commitstrip.com/en/feed/')
 def get_comic_images(rss_results_array)
     agent = Mechanize.new
     rss_results_array.each do |result|
+        print("CDATA: " + result.item.content_encoded)
         agent.get(result.content).save "images/#{File.basename(url)}"
     end
 end
