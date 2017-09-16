@@ -34,12 +34,10 @@ end
 comics_rss_scrape('http://www.commitstrip.com/en/feed/')
 
 
-
 def get_comic_images(rss_results_array)
     agent = Mechanize.new
     rss_results_array.each do |result|
-        print("CDATA: " + result.item.content_encoded)
-        agent.get(result.content).save "images/#{File.basename(url)}"
+        print("CDATA: " + //*[@id="contet"]/div/div[rss_results_array[result]]/section/a/img)
     end
 end
 
@@ -48,3 +46,7 @@ get_comic_images(rss_results)
 # xpath documentation: https://developer.mozilla.org/en-US/docs/Web/XPath
 # XPath: //item/content-encoded returns all content-encoded returns all
 # content-encoded stuff in document
+
+# //*[@id="content"]/div/div[2]/section/a/img
+# //*[@id="content"]/div/div[1]/section/a/img
+# how to get this into rss_results() function? 
