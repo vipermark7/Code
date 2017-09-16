@@ -37,10 +37,12 @@ comics_rss_scrape('http://www.commitstrip.com/en/feed/')
 def get_comic_images(rss_results_array)
     agent = Mechanize.new
     rss_results_array.each do |result|
-        print("CDATA: " + //*[@id="contet"]/div/div[rss_results_array[result]]/section/a/img)
+        print("CDATA: " + //*[@id="content"]/div/div[rss_results_array[result]]/section/a/img)
+        agent.get(//*[@id="content"]/div/div[rss_results_array[result]]/section/a/img).save(~/images/result.title)
     end
 end
 
+# XPath: //item/content-encoded returns all content-encoded returns all
 get_comic_images(rss_results)
 
 # xpath documentation: https://developer.mozilla.org/en-US/docs/Web/XPath
