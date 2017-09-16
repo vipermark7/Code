@@ -38,11 +38,11 @@ def get_comic_images(rss_results_array)
     agent = Mechanize.new
     rss_results_array.each do |result|
         print("CDATA: " + //*[@id="content"]/div/div[rss_results_array[result]]/section/a/img)
-        agent.get(//*[@id="content"]/div/div[rss_results_array[result]]/section/a/img).save(~/images/result.title)
+        agent.get(//*[@id="content"]/div/div[rss_results_array[result]]/section/a/img)
+        .save(~/images#{result.title}.jpg)
     end
 end
 
-# XPath: //item/content-encoded returns all content-encoded returns all
 get_comic_images(rss_results)
 
 # xpath documentation: https://developer.mozilla.org/en-US/docs/Web/XPath
