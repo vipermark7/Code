@@ -23,15 +23,12 @@ def comics_rss_scrape(xml_feed_string)
     return rss_results
 end
 
-
 # TODO: figure out how to store comic links, images, and possibly related records!!!!!!!!!!!
 # file systems are preferred to databases in regards to image storage, good to use with open source compression software!
 
 # this function can probably be applied to other websites to automate web scraping, 
 #    but they MAY have different ways to hold the data
 comics_rss_scrape('http://www.commitstrip.com/en/feed/')
-
-
 
 def get_comic_images(rss_results_array)
     agent = Mechanize.new
