@@ -13,7 +13,9 @@ def comics_rss_scrape(xml_feed_string)
           title: result.title,
           date: result.pubDate,
           link: result.link,
-          description: result.description 
+          description: result.description
+          # XPath: //item/content-encoded returns all content-encoded returns all
+          # content-encoded stuff in document
         }
         rss_results.push(result)
     end
@@ -30,13 +32,25 @@ end
 #    but they MAY have different ways to hold the data
 comics_rss_scrape('http://www.commitstrip.com/en/feed/')
 
+<<<<<<< HEAD:commitStripScraping.rb
+=======
+
+>>>>>>> 032264cfa9bf18a2a22acb5e4943db92bdde0b4e:comicmailer/commitStripScraping.rb
 def get_comic_images(rss_results_array)
     agent = Mechanize.new
     rss_results_array.each do |result|
-        agent.get(result.content).save "images/#{File.basename(url)}"
+        print("CDATA: " + //*[@id="content"]/div/div[rss_results_array[result]]/section/a/img)
+        agent.get(//*[@id="content"]/div/div[rss_results_array[result]]/section/a/img)
+        .save(~/images#{result.title}.jpg)
     end
 end
 
 get_comic_images(rss_results)
 
 # xpath documentation: https://developer.mozilla.org/en-US/docs/Web/XPath
+# XPath: //item/content-encoded returns all content-encoded returns all
+# content-encoded stuff in document
+
+# //*[@id="content"]/div/div[2]/section/a/img
+# //*[@id="content"]/div/div[1]/section/a/img
+# how to get this into rss_results() function? 
