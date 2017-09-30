@@ -25,6 +25,8 @@ def comics_rss_scrape(xml_feed_string)
     return rss_results
 end
 
+def comics
+
 # TODO: figure out how to store comic links, images, and possibly related records!!!!!!!!!!!
 # file systems are preferred to databases in regards to image storage, good to use with open source compression software!
 
@@ -32,17 +34,10 @@ end
 #    but they MAY have different ways to hold the data
 comics_rss_scrape('http://www.commitstrip.com/en/feed/')
 
-<<<<<<< HEAD:commitStripScraping.rb
-=======
-
->>>>>>> 032264cfa9bf18a2a22acb5e4943db92bdde0b4e:comicmailer/commitStripScraping.rb
 def get_comic_images(rss_results_array)
+    doc = Nokogiri::HTML(open('http://www.commitstrip.com/en/feed/'))
     agent = Mechanize.new
-    rss_results_array.each do |result|
-        print("CDATA: " + //*[@id="content"]/div/div[rss_results_array[result]]/section/a/img)
-        agent.get(//*[@id="content"]/div/div[rss_results_array[result]]/section/a/img)
-        .save(~/images#{result.title}.jpg)
-    end
+    doc.*[@id="content"]/div/div[0]/section/a/img
 end
 
 get_comic_images(rss_results)
