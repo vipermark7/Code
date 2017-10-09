@@ -49,3 +49,4 @@ get_comic_images(rss_results)
 # //*[@id="content"]/div/div[2]/section/a/img
 # //*[@id="content"]/div/div[1]/section/a/img
 # how to get this into rss_results() function? 
+end
