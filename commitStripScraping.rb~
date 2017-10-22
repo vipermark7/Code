@@ -10,18 +10,10 @@ def comics_rss_scrape(xml_feed_string)
 
     rss.each do |result|
         result = { 
-<<<<<<< HEAD
-           title: result.title,
-           date: result.pubDate,
-           link: result.link,
-           description: result.description,
-           content: result.content_encoded.CDATA.p.image_src
-=======
           title: result.title,
           date: result.pubDate,
           link: result.link,
           description: result.description 
->>>>>>> fba2995477928eb5d3fd5b03308eccdbadba37c5
         }
         rss_results.push(result)
     end
