@@ -24,8 +24,7 @@ def comics_rss_scrape(xml_feed_string)
     end  
     return rss_results
 end
-
-
+ 
 # TODO: figure out how to store comic links, images, and possibly related records!!!!!!!!!!!
 # file systems are preferred to databases in regards to image storage, good to use with open source compression software!
 
@@ -51,4 +50,4 @@ get_comic_images(rss_results)
 
 # //*[@id="content"]/div/div[2]/section/a/img
 # //*[@id="content"]/div/div[1]/section/a/img
-# how to get this into rss_results() function? 
+# how to get this into rss_results() function?
