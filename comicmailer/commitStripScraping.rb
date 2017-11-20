@@ -4,6 +4,10 @@ require 'mechanize'
 
 # RSS Scraping info from: https://medium.com/@josheche/parsing-an-rss-feed-in-ruby-on-rails-58b23cfb5b25
 # add gem that checks to see whether page has changed and performs web scraping operations upon change
+# # xpath documentation: https://developer.mozilla.org/en-US/docs/Web/XPath
+# XPath: //item/content-encoded returns all content-encoded returns all
+# content-encoded stuff in document
+# //*[@id="content"]/div/div[2]/section/a/img
 def comics_rss_scrape(xml_feed_string)
     rss_results = []
     rss = RSS::Parser.parse(open(xml_feed_string).read, false).items[0..4]
@@ -43,9 +47,4 @@ end
 
 get_comic_images(rss_results)
 
-# xpath documentation: https://developer.mozilla.org/en-US/docs/Web/XPath
-# XPath: //item/content-encoded returns all content-encoded returns all
-# content-encoded stuff in document
 
-# //*[@id="content"]/div/div[2]/section/a/img
-end
