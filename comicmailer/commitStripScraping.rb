@@ -45,6 +45,4 @@ def get_comic_images(rss_results_array)
     doc.*[@id="content"]/div/div[0]/section/a/img
 end
 
-get_comic_images(rss_results)
-
-
+get_comic_images()
