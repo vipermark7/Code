@@ -41,7 +41,8 @@ polygons = [polygons.append(i) for i in shapefile if i['geometry']['type'] == 'P
 multipolygons = [polygons.append(i) for i in shapefile if i['geometry']['type'] == 'MultiPolygon']
 # TODO: convert polygons, multipolygons into lists of point values
 for polygon in polygons:
-    # polygon_val = polygon['value'] TODO: what is meant by polygon value: ANS attribute that we are dealing with in shapefile eg ALAND
+    # polygon_val = polygon['value'] TODO: what is meant by polygon value:
+     ANS attribute that we are dealing with in shapefile eg ALAND
     polygon_val += total_val
 for iteration in range(iteration_count): # TODO: controlled by user
     for polygon in polygons:
@@ -69,6 +70,8 @@ for iteration in range(iteration_count): # TODO: controlled by user
                     fij = mass * (distance ** 2 / radius ** 2) + (4 - 3 + (distance / radius))
                 # using fij and angles, calculate vector sum, see page 76 of Dougenik
                 # multiply by force_reduction_factor
-                # move coordinate accordingly, see paper, this is due to force calculation
-            # write distorted line to output and plot result (distorted boundary line) read up on plotting result using matplotlib
+                # move coordinate accordingly, see paper, this is due to 
+                # force calculation
+            # write distorted line to output and plot result (distorted
+            # boundary line) read up on plotting result using matplotlib
 
