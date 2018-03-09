@@ -10,18 +10,18 @@ program that can be used to produce a cartogram given a polygon shapefile and th
 """
 
 import sys
-
 sys.path.append('C:\\Users\\vipermk7\\Documents\\G5222\\lib\\')
+sys.path.append('/home/smustafa/gisalgs/')
 from descartes import PolygonPatch
 from geom.centroid import *
-from geom.shapex import *
+from mapping.shapex import *
 from math import pi, sqrt
 from statistics import mean
 
 shape_input ="C:/Users/vipermk7/Documents/cb_2016_us_state_500k/cb_2016_us_state_500k.shp"
 shapefile = shapex(shape_input)
 
-# teration_count = int(input("How many iterations should we do: "))
+# iteration_count = int(input("How many iterations should we do: "))
 
 polygon_val = 0
 total_val = 0
