@@ -10,8 +10,8 @@ program that can be used to produce a cartogram given a polygon shapefile and th
 """
 
 import sys
-sys.path.append('C:\\Users\\vipermk7\\Documents\\G5222\\lib\\')
-sys.path.append('/home/smustafa/gisalgs/')
+sys.path.append('C:/Users/Shaffan/Documents/G5201+G5212+G5222/G5222/lib')
+
 from descartes import PolygonPatch
 from geom.centroid import *
 from mapping.shapex import *
@@ -37,12 +37,12 @@ fij = 0
 vector_sum = 0
 
 # putting all polygons and multipolygons into an array called polygons
-polygons = [polygons.append(i) for i in shapefile if i['geometry']['type'] == 'Polygon']
-multipolygons = [polygons.append(i) for i in shapefile if i['geometry']['type'] == 'MultiPolygon']
+polygons = [append(i) for i in shapefile if i['geometry']['type'] == 'Polygon']
+multipolygons = [append(i) for i in shapefile if i['geometry']['type'] == 'MultiPolygon']
 # TODO: convert polygons, multipolygons into lists of point values
 for polygon in polygons:
     # polygon_val = polygon['value'] TODO: what is meant by polygon value:
-     ANS attribute that we are dealing with in shapefile eg ALAND
+    # ANS attribute that we are dealing with in shapefile eg ALAND
     polygon_val += total_val
 for iteration in range(iteration_count): # TODO: controlled by user
     for polygon in polygons:
