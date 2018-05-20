@@ -9,8 +9,10 @@ More algorithms are listed at https://en.wikipedia.org/wiki/Cartogram. Choose on
 program that can be used to produce a cartogram given a polygon shapefile and the attribute to map.
 """
 
-import sys
+import sys, os
 sys.path.append('C:/Users/Shaffan/Documents/G5201+G5212+G5222/G5222/lib')
+os.chdir(os.getenv('HOME'))
+os.chdir('Code/lib')
 
 from descartes import PolygonPatch
 from geom.centroid import *
