@@ -1,5 +1,5 @@
 (filter even? (range 0 10))  ; ⇒ (0 2 4 6 8)
-(require '[clojure.string/ :as split])
+(require '[clojure.string/ :as str])
 (str/split "hello there" #" ")
 
 (defn cel-to-fahr
@@ -15,3 +15,7 @@
 (defn simplerange
   [i] ;a list;
   (- (reduce max i) (reduce min i)))
+
+(defn find-first ; from stackoverflow ;
+  [f coll] ; where coll is a map/list/sequence
+  (first (drop-while (complement f) coll)))

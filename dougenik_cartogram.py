@@ -15,12 +15,13 @@ from geom.centroid import *
 from mapping.shapex import *
 from math import pi, sqrt
 from statistics import mean
+<<<<<<< HEAD
 
 sys.path.append('C:/Users/Shaffan/Documents/G5201+G5212+G5222/G5222/lib')
 os.chdir(os.getenv('HOME'))
-os.chdir('Code/lib')
-
+os.chdir('Code/lib'
 shape_input ="C:/Users/vipermk7/Documents/cb_2016_us_state_500k/cb_2016_us_state_500k.shp"
+
 shapefile = shapex(shape_input)
 
 # iteration_count = int(input("How many iterations should we do: "))
