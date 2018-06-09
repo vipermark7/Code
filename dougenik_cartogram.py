@@ -11,14 +11,14 @@ program that can be used to produce a cartogram given a polygon shapefile and th
 
 import sys
 
-sys.path.append('C:\\Users\\vipermk7\\Documents\\G5222\\lib\\')
+sys.path.append('C:\\Shaffan\\vipermk7\\Documents\\G5222\\lib\\')
 from descartes import PolygonPatch
 from geom.centroid import *
 from geom.shapex import *
 from math import pi, sqrt
 from statistics import mean
 
-shape_input ="C:/Users/vipermk7/Documents/cb_2016_us_state_500k/cb_2016_us_state_500k.shp"
+shape_input ="C:/Users/Shaffan/Documents/cb_2016_us_state_500k/cb_2016_us_state_500k.shp"
 shapefile = shapex(shape_input)
 
 # teration_count = int(input("How many iterations should we do: "))
@@ -41,7 +41,7 @@ polygons = [polygons.append(i) for i in shapefile if i['geometry']['type'] == 'P
 multipolygons = [polygons.append(i) for i in shapefile if i['geometry']['type'] == 'MultiPolygon']
 # TODO: convert polygons, multipolygons into lists of point values
 for polygon in polygons:
-    # polygon_val = polygon['value'] TODO: what is meant by polygon value: ANS attribute that we are dealing with in shapefile eg ALAND
+     polygon_val = polygon['value'] #TODO: what is meant by polygon value: ANS attribute that we are dealing with in shapefile eg ALAND
     polygon_val += total_val
 for iteration in range(iteration_count): # TODO: controlled by user
     for polygon in polygons:
