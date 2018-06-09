@@ -9,19 +9,22 @@ More algorithms are listed at https://en.wikipedia.org/wiki/Cartogram. Choose on
 program that can be used to produce a cartogram given a polygon shapefile and the attribute to map.
 """
 
-import sys
-
-sys.path.append('C:\\Shaffan\\vipermk7\\Documents\\G5222\\lib\\')
+import sys, os
 from descartes import PolygonPatch
 from geom.centroid import *
-from geom.shapex import *
+from mapping.shapex import *
 from math import pi, sqrt
 from statistics import mean
+<<<<<<< HEAD
 
-shape_input ="C:/Users/Shaffan/Documents/cb_2016_us_state_500k/cb_2016_us_state_500k.shp"
+sys.path.append('C:/Users/Shaffan/Documents/G5201+G5212+G5222/G5222/lib')
+os.chdir(os.getenv('HOME'))
+os.chdir('Code/lib'
+shape_input ="C:/Users/vipermk7/Documents/cb_2016_us_state_500k/cb_2016_us_state_500k.shp"
+
 shapefile = shapex(shape_input)
 
-# teration_count = int(input("How many iterations should we do: "))
+# iteration_count = int(input("How many iterations should we do: "))
 
 polygon_val = 0
 total_val = 0
@@ -37,20 +40,20 @@ fij = 0
 vector_sum = 0
 
 # putting all polygons and multipolygons into an array called polygons
-polygons = [polygons.append(i) for i in shapefile if i['geometry']['type'] == 'Polygon']
-multipolygons = [polygons.append(i) for i in shapefile if i['geometry']['type'] == 'MultiPolygon']
+polygons = [append(i) for i in shapefile if i['geometry']['type'] == 'Polygon']
+multipolygons = [append(i) for i in shapefile if i['geometry']['type'] == 'MultiPolygon']
+shapes = [append(i) for i in shapefile if i['geometry']['type'] == 'MultiPolygon' or if i ['geometry']['type'] == 'Polygon']
 # TODO: convert polygons, multipolygons into lists of point values
 for polygon in polygons:
-     polygon_val = polygon['value'] #TODO: what is meant by polygon value: ANS attribute that we are dealing with in shapefile eg ALAND
+    # polygon_val = polygon['value'] TODO: what is meant by polygon value:
+    # ANS attribute that we are dealing with in shapefile eg ALAND
     polygon_val += total_val
-for iteration in range(iteration_count): # TODO: controlled by user
-    for polygon in polygons:
-        # calculate area and centroid (using current boundaries) TODO: shapex is good for this, but am i using it correctly ot find centroid and area?
-        area = centroid(polygon).result[0] # result[0], , we need to feed this an array of Point values
+for iteration in range(iteration_count): 
+        # calculate area and centroid (using current boundaries) 
+        area = centroid(polygon).result[0] # we need to feed this an array of Point values
         total_area += area
-        centroid = centroid(polygon).result[1] # result[1]
+        centroid = centroid(polygon).result[1]
         polygon_centroids.append(centroid)
-
 
     for polygon in polygons:
         desired = (total_area * (polygon_val/total_val))
@@ -69,6 +72,8 @@ for iteration in range(iteration_count): # TODO: controlled by user
                     fij = mass * (distance ** 2 / radius ** 2) + (4 - 3 + (distance / radius))
                 # using fij and angles, calculate vector sum, see page 76 of Dougenik
                 # multiply by force_reduction_factor
-                # move coordinate accordingly, see paper, this is due to force calculation
-            # write distorted line to output and plot result (distorted boundary line) read up on plotting result using matplotlib
+                # move coordinate accordingly, see paper, this is due to 
+                # force calculation
+            # write distorted line to output and plot result (distorted
+            # boundary line) read up on plotting result using matplotlib
 
