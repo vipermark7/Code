@@ -1,1 +1,1 @@
-C:/usr/lib/python3.6/_dummy_thread.py
+/mnt/c/usr/lib/python3.6/_dummy_thread.py

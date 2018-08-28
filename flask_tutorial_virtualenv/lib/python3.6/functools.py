@@ -1,1 +1,1 @@
-C:/usr/lib/python3.6/functools.py
+/mnt/c/usr/lib/python3.6/functools.py

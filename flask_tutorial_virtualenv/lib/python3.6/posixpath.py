@@ -1,1 +1,1 @@
-C:/usr/lib/python3.6/posixpath.py
+/mnt/c/usr/lib/python3.6/posixpath.py

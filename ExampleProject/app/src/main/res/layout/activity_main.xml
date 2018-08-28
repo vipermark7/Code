@@ -19,11 +19,11 @@
         android:textSize="27sp"/>
 
     <TextView
-        android:id="@+id/numberofclicks"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textSize="27sp"
-        android:paddingLeft="16dp" />
+    android:id="@+id/numberofclicks"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/app_name"
+    android:textSize="27sp"
+    android:paddingLeft="16dp" />
 
 </LinearLayout>
