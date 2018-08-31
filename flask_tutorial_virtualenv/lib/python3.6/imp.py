@@ -1,1 +1,1 @@
-/mnt/c/usr/lib/python3.6/imp.py
+C:/usr/lib/python3.6/imp.py

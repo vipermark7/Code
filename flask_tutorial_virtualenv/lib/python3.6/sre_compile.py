@@ -1,1 +1,1 @@
-/mnt/c/usr/lib/python3.6/sre_compile.py
+C:/usr/lib/python3.6/sre_compile.py
