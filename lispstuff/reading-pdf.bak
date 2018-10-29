@@ -1,0 +1,4 @@
+#lang racket
+(require pdf-read)
+ 
+(define document (open-pdf-uri "file:/tmp/secret.pdf" "some_password"))

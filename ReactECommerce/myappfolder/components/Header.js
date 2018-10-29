@@ -54,5 +54,5 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     color: '#2929'
   }
-  }
+}
 });
