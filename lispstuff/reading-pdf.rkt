@@ -1,10 +1,11 @@
 #lang racket
 (require pdf-read)
+(require pict)
  
 (define document (open-pdf-uri "file:/tmp/secret.pdf" "some_password"))
 
 ;; The first page of a PDF file. (Pages are zero-indexed)
-(define page (pdf-page "oopsla04-gff.pdf" 0))
+(define page (pdf-page "clojureforthebraveandtrue" 0))
  
 ;; Overlay each box over the PDF.
 (for/fold ([pageview (page->pict page)])

@@ -1,2 +1,0 @@
-(defvar *my-json* (cl-json:decode-json-from-source (open "~/Code/lispstuff/jsonExample.json")))
-;; (open *path/to/file*) creates a new stream which decode-json-from-source can read
