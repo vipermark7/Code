@@ -7,13 +7,13 @@
 
 ;; here's what happens when you type in certain things to try to take apart our new JSON object
 
-;; CL-USER> (nth 0 (first *my-json*))
+(nth 0 (first *my-json*))
 ;; :GLOSSARY
 
-;; CL-USER> (nth 1 (first *my-json*))
+(nth 1 (first *my-json*))
 ;; (:TITLE . "example glossary")
 
-;; CL-USER> (nth 2 (first *my-json*))
+(nth 2 (first *my-json*))
 ;; (:*GLOSS-DIV (:TITLE . "S")
 ;;  (:*GLOSS-LIST
 ;;   (:*GLOSS-ENTRY (:+ID+ . "SGML") (:*SORT-AS . "SGML")
