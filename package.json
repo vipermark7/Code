@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "react-native-contacts": "^2.2.5"
+  }
+}
