@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "expo-cli": "^2.6.13",
+    "npm": "^6.5.0",
+    "react-native": "^0.57.8",
     "react-native-contacts": "^2.2.5"
   }
 }
