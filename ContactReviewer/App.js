@@ -13,7 +13,8 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Text> Hi! Do you ever add new contacts to your phone only to forget about them after not talking to them for a while?
-          This app is built to help you stop doing that! 
+          This app is built to help you stop doing that! It will give you an optional quiz about your recently added contacts, while
+          asking you if you've kept in touch with your older contacts as well. 
         </Text>
       </View>
     );
