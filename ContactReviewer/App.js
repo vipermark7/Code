@@ -12,7 +12,9 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+        <Text> Hi! Do you ever add new contacts to your phone only to forget about them after not talking to them for a while?
+          This app is built to help you stop doing that! 
+        </Text>
       </View>
     );
   }
