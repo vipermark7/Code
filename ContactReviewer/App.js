@@ -9,6 +9,7 @@ import { TabNavigator } from 'react-navigation';
 	     //// contacts returned
 	    //console.log(contacts)
     //})
+
 export default class App extends React.Component {
   render() {
     return (
