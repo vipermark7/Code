@@ -10,7 +10,8 @@
     "expo": "^31.0.2",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
-    "react-native-contacts": "^2.2.5"
+    "react-native-contacts": "^2.2.5",
+    "styled-components": "^4.1.3"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0"
