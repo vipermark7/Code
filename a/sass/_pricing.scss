@@ -1,0 +1,141 @@
+#pricing {
+    padding: 10rem;
+    font-family: $font-primary;
+}
+
+.pricing-heading {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+}
+
+.pricing-text {
+    font-size: 2rem;
+    font-weight: 300;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 4rem;
+}
+
+.col-1-of-3 {
+    margin: 0 auto;
+    width: calc((100% - 2 * #{$gutter-horizontal}) / 3);
+}
+
+.card {
+    border: none;
+    //FUNCTIONALITY
+    perspective: 150rem;
+    -moz-perspective: 150rem;
+    position: relative;
+    height: 75rem;
+
+  &__side {
+        height: 75rem;
+        transition: all .8s ease;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 3px;
+        overflow: hidden;
+        box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .15);
+
+    &--front {
+      background-color: #fff;
+    }
+
+    &--back {
+      transform: rotateY(180deg);
+    }
+  }
+  &:hover &__side--front {
+    transform: rotateY(-180deg);
+  }
+
+  &:hover &__side--back {
+    transform: rotateY(0);
+  }
+
+  &__heading {
+    padding: 1rem;
+    font-size: 2.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+    border-bottom: 1px solid #222;
+  }
+
+  &__details {
+    padding: 1rem;
+
+    ul {
+      list-style: none;
+      width: 80%;
+      margin: 0 auto;
+
+      li {
+          text-align: center;
+          font-size: 1.5rem;
+          padding: 1rem;
+      }
+    }
+  }
+
+  &__cta {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    text-align: center;
+
+    &--btn {
+        border: 1px solid #222;
+        background-color: #222;
+        color: #fff;
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        display: inline-block;
+        border-radius: 10rem;
+        transition: all .4s ease;
+
+        &:hover {
+            color: #fff;
+            text-decoration: none;
+            transform: translateY(-3px);
+            box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
+        }
+    }
+  }
+
+  &__price-box {
+    margin-bottom: 8rem;
+  }
+
+  &__price-only {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
+
+  &__price-value {
+    font-size: 6rem;
+    font-weight: 100;
+  }
+}
+
+.fa-check {
+    color: green;
+}
+
+.fa-times {
+    color: red;
+}
+
+.pricing-special-title {
+  background-color: $color-primary;
+}

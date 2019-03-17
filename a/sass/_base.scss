@@ -1,0 +1,69 @@
+// Colors
+$color-off-white: #fefdfd;
+
+$color-primary: #AACDF7;
+$color-secondary: #8AA5C7;
+
+// background: #fc00ff;  /* fallback for old browsers */
+// background: -webkit-linear-gradient(to right, #00dbde, #fc00ff);  /* Chrome 10-25, Safari 5.1-6 */
+// background: linear-gradient(to right, #00dbde, #fc00ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+// Fonts
+$font-primary: "Montserrat", sans-serif;
+$font-secondary: "Source Sans Pro", sans-serif;
+
+$grid-width: 114rem;
+$gutter-vertical: 8rem;
+$gutter-vertical-small: 6rem;
+$gutter-horizontal: 6rem;
+
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+#navigation {
+    background-color: $color-primary;
+    font-family: $font-primary;
+    text-align: left;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $color-secondary; 
+  border-radius: 10px;
+}
+
+.special-title {
+    padding: 0.5rem 2rem;
+    -webkit-clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+}
