@@ -1,0 +1,65 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 27/11/2018 04:44
+  	*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("../fonts/Flaticon.eot");
+  src: url("../fonts/Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("../fonts/Flaticon.woff") format("woff"),
+       url("../fonts/Flaticon.ttf") format("truetype"),
+       url("../fonts/Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("../fonts/Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {
+  font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+margin-left: 20px;
+}
+
+.flaticon-magnifying-glass:before { content: "\f100"; }
+.flaticon-magnifying-glass-1:before { content: "\f101"; }
+.flaticon-search:before { content: "\f102"; }
+.flaticon-next:before { content: "\f103"; }
+.flaticon-next-1:before { content: "\f104"; }
+.flaticon-slim-right:before { content: "\f105"; }
+.flaticon-back:before { content: "\f106"; }
+.flaticon-back-1:before { content: "\f107"; }
+.flaticon-slim-left:before { content: "\f108"; }
+.flaticon-video-player:before { content: "\f109"; }
+.flaticon-helmet:before { content: "\f10a"; }
+.flaticon-mine:before { content: "\f10b"; }
+.flaticon-happy:before { content: "\f10c"; }
+.flaticon-like:before { content: "\f10d"; }
+.flaticon-computer:before { content: "\f10e"; }
+.flaticon-analysis-1:before { content: "\f10f"; }
+.flaticon-monitor:before { content: "\f110"; }
+.flaticon-www:before { content: "\f111"; }
+.flaticon-team:before { content: "\f112"; }
+.flaticon-group:before { content: "\f113"; }
+.flaticon-technical-support:before { content: "\f114"; }
+.flaticon-admin:before { content: "\f115"; }
+.flaticon-advertisement:before { content: "\f116"; }
+.flaticon-laptop:before { content: "\f117"; }
+.flaticon-email:before { content: "\f118"; }
+.flaticon-seo-and-web:before { content: "\f119"; }
+.flaticon-blog:before { content: "\f11a"; }
+.flaticon-worlwide:before { content: "\f11b"; }
+.flaticon-keyword:before { content: "\f11c"; }
+.flaticon-rocket:before { content: "\f11d"; }
+.flaticon-macbook-pro:before { content: "\f11e"; }
+.flaticon-enterprise:before { content: "\f11f"; }
+.flaticon-goal:before { content: "\f120"; }
+.flaticon-trophy:before { content: "\f121"; }

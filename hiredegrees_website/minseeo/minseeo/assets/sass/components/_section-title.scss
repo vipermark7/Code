@@ -1,0 +1,58 @@
+.section-title {
+	text-align: center;
+	margin-bottom: 50px;
+
+	h2 {
+		font-size: 38px;
+		font-size: calc-rem-value(38);
+		color: $white;
+		margin: -.22em 0 0.65em;
+
+		@include media-query(991px) {
+			font-size: 32px;
+			font-size: calc-rem-value(32);
+		}
+
+		@include media-query(767px) {
+			font-size: 28px;
+			font-size: calc-rem-value(28);
+		}
+	}
+
+	p {
+		font-size: 17px;
+		font-size: calc-rem-value(17);
+		color: $white;
+		margin: 0;
+
+		@include widther(1200px) {
+			padding: 0 45px;
+		}
+
+		@include media-query(991px) {
+			font-size: 16px;
+			font-size: calc-rem-value(16);
+		}
+	}
+}
+
+.section-title-s2 {
+	@extend .section-title;
+
+	h2 {
+		color: $heading-color;
+	}
+
+	p {
+		color: $text-color;
+	}
+}
+
+.section-title-s3 {
+	@extend .section-title-s2;
+	text-align: left;
+
+	p {
+		padding: 0;
+	}
+}
