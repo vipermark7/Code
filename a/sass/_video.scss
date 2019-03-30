@@ -1,0 +1,34 @@
+#video {
+    padding: 7% 15%;
+    background-color: $color-primary;
+    font-family: $font-primary;
+    text-align: center;
+    color: #222;
+
+    h3 {
+        font-size: 3.5rem;
+        font-weight: 900;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 2rem;
+        font-weight: 300;
+        width: 50%;
+        margin: 0 auto;
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+    }
+}
+
+.laundry-video-container {
+    margin-top: 4rem;
+}
+.laundry-video {
+    width: 100%;
+    height: 100%;
+}
+
+.video-special-title {
+    background-color: $color-secondary;
+}

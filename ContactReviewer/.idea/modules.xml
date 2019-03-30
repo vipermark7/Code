@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/node_modules/react-native/ReactAndroid/src/androidTest/androidTest.iml" filepath="$PROJECT_DIR$/node_modules/react-native/ReactAndroid/src/androidTest/androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/node_modules/lottie-react-native/src/android/build/intermediates/manifests/aapt/debug/debug.iml" filepath="$PROJECT_DIR$/node_modules/lottie-react-native/src/android/build/intermediates/manifests/aapt/debug/debug.iml" />
+      <module fileurl="file://$PROJECT_DIR$/node_modules/react-native/local-cli/core/__fixtures__/files/files.iml" filepath="$PROJECT_DIR$/node_modules/react-native/local-cli/core/__fixtures__/files/files.iml" />
+      <module fileurl="file://$PROJECT_DIR$/node_modules/react-native/RNTester/android/app/src/main/main.iml" filepath="$PROJECT_DIR$/node_modules/react-native/RNTester/android/app/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/node_modules/lottie-react-native/src/android/build/intermediates/manifests/aapt/release/release.iml" filepath="$PROJECT_DIR$/node_modules/lottie-react-native/src/android/build/intermediates/manifests/aapt/release/release.iml" />
+    </modules>
+  </component>
+</project>
