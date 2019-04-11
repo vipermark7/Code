@@ -16,7 +16,7 @@ export default class App extends React.Component {
       <Container>
         <TextStyled> 
           <Text>
-			      Hi! Do you ever add new contacts to your phone only to forget about them after not talking to them for a while?
+			      Hi! Do you add new contacts to your phone only to forget about them a while later?
           </Text>
           <Text>
             This app is built to help you stop doing that! It will give you an optional quiz about your recently added contacts, while
