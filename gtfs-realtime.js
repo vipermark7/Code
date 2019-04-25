@@ -3,7 +3,7 @@ var request = require('request');
 
 var requestSettings = {
   method: 'GET',
-  url: 'URL OF YOUR GTFS-REALTIME SOURCE GOES HERE',
+  url: 'https://transitfeeds.com/p/central-ohio-transit-authority/651/source',
   encoding: null
 };
 request(requestSettings, function (error, response, body) {
