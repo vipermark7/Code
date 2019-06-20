@@ -1,6 +1,0 @@
-framework module TNSCalendar {
-  umbrella header "TNSCalendar.h"
-
-  export *
-  module * { export * }
-}

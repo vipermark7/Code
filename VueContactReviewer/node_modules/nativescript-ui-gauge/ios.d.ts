@@ -1,1 +1,0 @@
-/// <reference path="./platforms/ios/typings/gauge.d.ts" />

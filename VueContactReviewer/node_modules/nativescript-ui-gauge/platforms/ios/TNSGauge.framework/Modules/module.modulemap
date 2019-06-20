@@ -1,6 +1,0 @@
-framework module TNSGauge {
-  umbrella header "TNSGauge.h"
-
-  export *
-  module * { export * }
-}

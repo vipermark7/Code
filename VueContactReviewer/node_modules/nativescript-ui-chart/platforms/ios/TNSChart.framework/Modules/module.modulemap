@@ -1,6 +1,0 @@
-framework module TNSChart {
-  umbrella header "TNSChart.h"
-
-  export *
-  module * { export * }
-}

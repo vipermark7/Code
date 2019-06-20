@@ -1,5 +1,0 @@
-{ 
-  "name" : "calendar-directives",
-  "main" : "calendar-directives",
-  "typings" : "calendar-directives.d.ts" 
- }

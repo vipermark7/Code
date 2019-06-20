@@ -1,1 +1,0 @@
-/// <reference path="./platforms/ios/typings/sidedrawer.d.ts" />

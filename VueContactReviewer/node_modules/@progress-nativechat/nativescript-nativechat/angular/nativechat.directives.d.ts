@@ -1,3 +1,0 @@
-export declare class NativeChatDirective {
-}
-export declare const DIRECTIVES: typeof NativeChatDirective;

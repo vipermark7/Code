@@ -1,1 +1,0 @@
-/// <reference path="./platforms/android/typings/calendar.d.ts" />

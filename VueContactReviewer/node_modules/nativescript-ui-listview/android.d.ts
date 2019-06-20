@@ -1,1 +1,0 @@
-/// <reference path="./platforms/android/typings/listview.d.ts" />
