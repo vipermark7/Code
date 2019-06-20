@@ -1,0 +1,12 @@
+{
+	"iosLibraryName": "TNSChart",
+	"androidLibraryName": "TNSChart",
+	"provisioningProfile": "NativeScriptDevProfile",
+	"pluginSrcFolder": "/Users/branzov/Git/nativescript-ui-chart/src",
+	"pluginPlatformFolder": "/Users/branzov/Git/nativescript-ui-chart/src/platforms",
+	"pluginIosSrcFolder": "/Users/branzov/Git/nativescript-ui-chart/src-native/ios",
+	"pluginAndroidSrcFolder": "/Users/branzov/Git/nativescript-ui-chart/src-native/android",
+	"demoFolder": "/Users/branzov/Git/nativescript-ui-chart/demo",
+	"demoAngularFolder": "/Users/branzov/Git/nativescript-ui-chart/demo-angular",
+	"demoVueFolder": "/Users/branzov/Git/nativescript-ui-chart/demo-vue"
+}

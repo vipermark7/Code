@@ -1,5 +1,5 @@
 import Vue from 'nativescript-vue';
-
+import getContactyBois from './components/getContactyBois';
 
 
 // Uncommment the following to see NativeScript-Vue output logs

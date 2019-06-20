@@ -1,0 +1,10 @@
+android {
+
+}
+
+def supportVersion = project.hasProperty("supportVersion") ? project.supportVersion : "28.0.0"
+
+dependencies {
+	implementation "com.android.support:appcompat-v7:$supportVersion"
+	implementation "com.android.support:recyclerview-v7:$supportVersion"
+}
