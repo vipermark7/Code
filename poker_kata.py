@@ -13,7 +13,10 @@
 
  # if set(suits) is 1 you have a flush
  
- def poker(hand): 
+ cardValues = (2, 3, 4, 5, 6, 7, 8 ,9, 'T', 'J', 'Q', 'K', 'A')
+ cardSuits = 
+ 
+ def poker(hand): # array of cards
      flush,
      straight,
      highCard, 
