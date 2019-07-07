@@ -29,7 +29,7 @@ for i in range(_size):
             repeated.append(x[i])
             return repeated
 
-def poker(hand): # array of cards
+def rank_hand(hand): # array of cards
     '''
     High Card: return 0
     Pair: 1
