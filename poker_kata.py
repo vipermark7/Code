@@ -6,19 +6,19 @@
 
 
 
- # if set(faces) has 5 elements then you either have a bunch of crap or a
- # straight. You can tell the difference by comparing the max/min of # the  set, which will give you the spread.
+# if set(faces) has 5 elements then you either have a bunch of crap or a
+# straight. You can tell the difference by comparing the max/min of # the  set, which will give you the spread.
 
- # if set(faces) is two you either have 4 + 1 or 3 +2
+# if set(faces) is two you either have 4 + 1 or 3 +2
 
- # if set(suits) is 1 you have a flush
+# if set(suits) is 1 you have a flush
  
- cardValues = (2, 3, 4, 5, 6, 7, 8 ,9, 'T', 'J', 'Q', 'K', 'A')
- cardSuits = 
+cardValues = (2, 3, 4, 5, 6, 7, 8 ,9, 'T', 'J', 'Q', 'K', 'A') cardSuits
+= ('C', 'D', 'H', 'S')
  
- def poker(hand): # array of cards
+def poker(hand): # array of cards
      flush,
-     straight,
+    straight,
      highCard, 
      pair,  
      twoPairs, 
@@ -29,17 +29,17 @@
      fourOfaKind,
      straightFlush = False
      
-     # Flush
-     if len(set(suits)) == 1:
+    # Flush
+    if len(set(suits)) == 1:
         print("Flush")
         flush = True 
         
-      # Straight 
-      if
+    # Straight 
+    if
       
-      # Straight Flish 
-      if straight == True and flush == True:
-          straightFlush = True
+    # Straight Flish 
+    if straight == True and flush == True:
+        straightFlush = True
       
                 
  
