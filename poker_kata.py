@@ -28,6 +28,21 @@ for i in range(_size):
             repeated.append(x[i])
             return repeated
 
+def read_hands():
+    pokerhand = open("C:/Users/Shaffan/pokerhand.txt").read()
+    sep_hands = pokerhand.splitlines()
+    sep_hands_wo_black = []
+    sep_hands_wo_black_white = []
+    for hand in sep_hands:
+        hand[7:44]
+    for hand in sep_hands:
+        sep_hands_wo_black.append(hand[7:44])
+    for h in sep_hands_wo_black:
+        sep_hands_wo_black_white.append(h.replace(" White: ", " "))
+    for h in sep_hands_wo_black_white:
+        print(h)
+        
+        
 def rank_hand(hand): # array of cards
     '''
     High Card: return 0
@@ -44,8 +59,8 @@ def rank_hand(hand): # array of cards
     '''
     flush, straight, highCard,
     pair, twoPairs, threeOfaKind,
-    straight,flush,fullHouse,
-    fourOfaKind,straightFlush = False
+    straight, flush, fullHouse,
+    fourOfaKind, straightFlush = False
 
     returnVal = -2 # default return value
 
@@ -66,18 +81,21 @@ def rank_hand(hand): # array of cards
     # Flush: Hand contains 5 cards of the same suit. Hands which are both
     # flushes are ranked using the rules for High Card.
     if len(set(values)) == 5:
-        print("Flush")
+        returnVal = 4
         flush = True
 
     # Straight: Hand contains 5 cards with consecutive values. Hands which both
     # contain a straight are ranked by their highest card.
     if (max(values) - min(values) == 4) and len(set(values)) == 5
-        returnVal = 4
+        returnVal = 5
 
-    # Full House
+    # Full House - needs a Pair and Three of a Kind
+    if pair == True and threeOfaKind == True:
+        fullHouse = True
+        returnVal = 6
 
-    # Four of a Kind
-
+    # Four of a Kind (four cards of a kind, "kicker" [the card that is different] is the tiebreaker)
+   
 
     # Straight Flush
     if straight == True and flush == True:
