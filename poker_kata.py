@@ -29,23 +29,24 @@ def Repeat(x): # function that adds numbers that are repeated to a list
                 return repeated
 
 def read_hands():
-    pokerhand = open("C:/Users/Shaffan/pokerhand.txt").read()
-    sep_hands = pokerhand.splitlines()
-    sep_hands_wo_black = []
-    sep_hands_wo_bw = []
-    for hand in sep_hands:
-        hand[7:44]
-    for hand in sep_hands:
-        sep_hands_wo_black.append(hand[7:44])
-    for h in sep_hands_wo_black:
-        sep_hands_wo_bw.append(h.replace(" White: ", " "))
-    for h in sep_hands_wo_bw:
-        print(h)
-# len("2H 3D 5S 9C KD") = 14 (first half of the first hand)
+    pokerhand = ["Black: 2H 3D 5S 9C KD  White: 2C 3H 4S 8C AH",
+    "Black: 2H 4S 4C 2D 4H  White: 2S 8S AS QS 3S",
+    "Black: 2H 3D 5S 9C KD  White: 2C 3H 4S 8C KH",
+    "Black: 2H 3D 5S 9C KD  White: 2D 3H 5C 9S KH"]
 
-        
-    
-        
+    poker_wo_black = [i.replace("Black: ", "") for i in pokerhand]
+    poker_wo_bw = [i.replace("White:", "") for i in poker_wo_black]
+    poker_wobw_str = ""
+
+    for i in poker_wo_bw:
+        poker_wobw_str += i
+    pokerlist = poker_wobw_str.split(" ")
+
+
+    for i in pokerlist
+        if i.strip() == '':
+            pokerlist.remove(i)
+    print(pokerlist)
         
 def rank_hand(hand): # array of cards
     '''
