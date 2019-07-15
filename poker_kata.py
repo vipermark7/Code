@@ -62,9 +62,9 @@ def rank_hand(hand): # array of cards
 
     also need to be able to deal with ties
     '''
-    flush, straight, highCard,
-    pair, twoPairs, threeOfaKind,
-    straight, flush, fullHouse,
+    flush, straight, highCard = False
+    pair, twoPairs, threeOfaKind = False
+    straight, flush, fullHouse = False
     fourOfaKind, straightFlush = False
 
     returnVal = -2 # default return value
