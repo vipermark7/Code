@@ -1,8 +1,5 @@
-// Module to search YouTube
 const yt = require("youtube-search");
-// What we use to make the API
 const express = require("express");
-// Secret Google API key we store in a seperete file
 const secretboi = require("./secret.json");
 
 // Port our API runs on
