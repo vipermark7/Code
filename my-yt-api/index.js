@@ -1,4 +1,8 @@
 const yt = require("youtube-search");
+=======
+// Built in module to create, read files etc.
+const fs = require("fs");
+// What we use to make the API
 const express = require("express");
 const secretboi = require("./secret.json");
 
@@ -7,6 +11,16 @@ const port = 8000;
 
 // How to initiate express
 const app = express();
+const bodyParser = require('body-parser')
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
+// Handles MultiPart Form data
+const multer = require('multer');
+const upload = multer();
+
+app.use(express.static(__dirname));
 
 // Our rout, "localhost:8000/yt"
 // If this was "/hello" it would be 
@@ -39,6 +53,30 @@ app.get("/yt", (req, res) => {
         });
 
     });
+});
+
+// Post reuqest
+// upload.single('form_boi') 
+// ^ From extension called Multer
+// Handles multipart form data
+app.post("/sharex", upload.single('form_boi'), (req, res) => {
+    // Key to check
+    let clientKey = "123";
+
+    // Key we recieve
+    let key = req.body.key;
+    // File name
+    let name = req.body.name;
+    // File buffer
+    let file = req.file.buffer;
+
+    // Check key
+    if (clientKey !== key)
+        return res.end("no");
+    
+    // If key correct, write to file
+    fs.writeFileSync(`./Pics/${name}.png`, file);
+    return res.end(`http://localhost:8000/Pics/${name}.png`);
 });
 
 // Setup Express webserver
