@@ -11,5 +11,5 @@ soup = BeautifulSoup(html, "html.parser")
 lis = soup.findAll('li')
 facts = [i.text.strip() for i in lis]
 
-# the output of this code is in parsedFacts.txt. 
+# the output of this code is in parsedfacts.txt. 
 # I still had to hit backspace a few times to put each complege fact on one line
