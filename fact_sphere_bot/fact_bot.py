@@ -52,6 +52,5 @@ async def moarfacts(c, times):
         msg += random.choice(fact_list) + '\n'
     await c.channel.send(msg)
 
-# DOCS: https://discordpy.readthedocs.io/en/async/api.html
 # Login bot to Discord
 client.run(token)
