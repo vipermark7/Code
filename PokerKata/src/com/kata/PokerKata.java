@@ -4,22 +4,35 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 class PokerKata {
-    boolean highCard, pair, twoPairs, threeOfAKind, straight, flush, fullHouse, fourOfAKind, straightFlush = false;
+    boolean highCard, pair, twoPairs, threeOfAKind, straight,
+            flush, fullHouse, fourOfAKind, straightFlush = false;
 
-    public static ArrayList<Card> parseHand(String handStr) {
-        String[] hand = handStr.split("\\s");
-
-        ArrayList<Card> returnVal = new ArrayList<>();
-        for (String i: hand) {
-            if (i.equals("Black:") || i.equals("White:")) {
-                continue;
+    public static ArrayList<String> parseHand(String handStr) {
+        /** returns an array of strings representing cards from a string **/
+        var hand = new ArrayList<String>();
+        for (var i : handStr.split("\\s")) {
+            //getting rid of "Black:" and "White:", along with empty spaces
+            if (i.length() > 2 || i.length() < 1) {
+                hand.remove(i);
+            } else {
+                hand.add(i);
             }
-            Card card = new Card("","");
-            card.value = i.substring(0);
-            card.suit = i.substring(i.length()-1);
-            returnVal.add(card);
         }
-        return returnVal;
+        return hand;
+    }
+
+    public static ArrayList<Card> sortIntoCards(ArrayList<String> parsed) {
+        /** Get a parsed string sorted into an ArrayList of Cards **/
+        // var hand1 = new ArrayList<Card>()
+        // var hand2 = new ArrayList<Card>()
+        var cards = new ArrayList<Card>();
+        for (var i : parsed) {
+            Card card = new Card();
+            card.value = i.charAt(0);
+            card.suit = i.charAt(1);
+            cards.add(card);
+        }
+        return cards;
     }
 
     boolean pair(String[] hand1, String[] hand2) {
@@ -28,10 +41,12 @@ class PokerKata {
     }
 
     public static void main(String[] args) {
-        for (Card card : parseHand("Black: 2H 3D 5S 9C KD")) {
-            System.out.println("Suit:" +  card.suit +
-                    " Value: " + card.value);
+        var hand = "Black: 2H 3D 5S 9C KD  White: 2C 3H 4S 8C AH";
+        var parsed = parseHand(hand);
+        var cards = sortIntoCards(parsed);
+        System.out.println(parsed);
+        for (var i: cards) {
+            System.out.println("Suit: " + i.suit + " Value: " + i.value);
         }
-        ;
     }
 }

@@ -1,10 +1,10 @@
 package com.kata;
 
 public class Card {
-    String value = "";
-    String suit = "";
+    char value = 'x';
+    char suit = 'x';
 
-    public Card(String suit, String value) {
+    public Card() {
         this.suit = suit;
         this.value = value;
     }
