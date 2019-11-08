@@ -53,4 +53,7 @@ async def moarfacts(c, times):
     await c.channel.send(msg)
 
 # Login bot to Discord
+@client.command(pass_context=True)
+async def moarfacts(c, sub, post_count):
+
 client.run(token)
