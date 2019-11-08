@@ -1,22 +1,23 @@
 package com.kata;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 class PokerKata {
     boolean highCard, pair, twoPairs, threeOfAKind, straight, flush, fullHouse, fourOfAKind, straightFlush = false;
 
-    ArrayList<Card> parseHand(String handStr) {
+    public static ArrayList<Card> parseHand(String handStr) {
         String[] hand = handStr.split("\\s");
 
         ArrayList<Card> returnVal = new ArrayList<>();
-        for (var i = 0; i < hand.length; i++) {
-            if (hand[i].equals("Black") || hand[i].equals("White")) {
+        for (String i: hand) {
+            if (i.equals("Black:") || i.equals("White:")) {
                 continue;
             }
-            Card c = new Card("","");
-            c.suit = hand[i].substring(0);
-            c.value = hand[i].substring(1);
-            returnVal.add(c);
+            Card card = new Card("","");
+            card.value = i.substring(0);
+            card.suit = i.substring(i.length()-1);
+            returnVal.add(card);
         }
         return returnVal;
     }
@@ -27,5 +28,10 @@ class PokerKata {
     }
 
     public static void main(String[] args) {
+        for (Card card : parseHand("Black: 2H 3D 5S 9C KD")) {
+            System.out.println("Suit:" +  card.suit +
+                    " Value: " + card.value);
+        }
+        ;
     }
 }
