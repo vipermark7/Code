@@ -33,8 +33,8 @@ class PokerKata {
         var cards = new ArrayList<Card>();
         for (var i : parsed) {
             Card card = new Card();
-            card.value = i.charAt(0);
-            card.suit = i.charAt(1);
+            card.value = i.charAt(0) + "";
+            card.suit = i.charAt(1) + "";
             cards.add(card);
         }
         return cards;
@@ -74,8 +74,10 @@ class PokerKata {
         int min = -1;
         for (int i = 0; i < hand.size(); i++) {
             min = i;
-            for (int j = i + 1; j < hand.size(); j++) {
-                if (hand.get(j).value < hand.get(j).value) {
+            for (var j = i + 1; j < hand.size(); j++) {
+                var jValue = Integer.parseInt(hand.get(j).value + "");
+                var minValue = Integer.parseInt(hand.get(min).value + "");
+                if (jValue < minValue) {
                     min = j;
                 }
             }
@@ -89,12 +91,12 @@ class PokerKata {
     }
 
     private boolean isStraight(ArrayList<Card> hand) {
-        ArrayList<Card> sorted = sortByValue(hand);
+        ArrayList<Card> sortedCards = sortByValue(hand);
         return straight;
     }
 
     private boolean isFlush(ArrayList<Card> hand) {
-        sortBySuit(hand);
+        ArrayList<Card> sortedCards = sortBySuit(hand);
         return flush;
     }
 
