@@ -32,8 +32,9 @@ class PokerKata {
         // var hand2 = new ArrayList<Card>()
         var cards = new ArrayList<Card>();
         for (var i : parsed) {
-            Card card = new Card(i.charAt(0) + "",
-                    i.charAt(1) + "");
+            Card card = new Card();
+            card.setValue(i.charAt(0) + "");
+            card.setSuit(i.charAt(1) + "");
             cards.add(card);
         }
         return cards;

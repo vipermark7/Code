@@ -2,10 +2,11 @@ package com.kata;
 import java.util.HashMap;
 
 public class Card {
-    private final HashMap<Object, Object> valueOrder = new HashMap<>();
+    public String suit;
+    public String value;
+    public final HashMap<Object, Object> valueOrder = new HashMap<>();
+    public String[] Suits = {"C", "D", "H", "S"};
     //TODO: values need to be comparable
-    public String value = "x";
-    public String suit = "x";
 
     /*
      Suits: C, H, D, S
@@ -15,10 +16,7 @@ public class Card {
 
 
     // each card is two characters: value, then suit
-    public Card(String value, String suit) {
-        final String[] Suits = {"C", "D", "H", "S"};
-
-        HashMap<String, Integer> valueOrder = new HashMap<>();
+    public Card() {
         valueOrder.put("2", 2);
         valueOrder.put("3", 3);
         valueOrder.put("4", 4);
@@ -32,19 +30,6 @@ public class Card {
         valueOrder.put("Q", 12);
         valueOrder.put("K", 13);
         valueOrder.put("A", 14);
-
-
-        // finding what value a card is
-
-        this.setValue(valueOrder.get(value).toString());
-        // finding what suit a card is
-        for (String s : Suits) {
-            if (suit.equals(s)) {
-                this.setSuit(s);
-            }
-        }
-
-
     }
 
     public boolean equals(Card x) {
@@ -52,7 +37,11 @@ public class Card {
     }
 
     public void setSuit(String suit) {
-        this.suit = suit;
+        for (String s : Suits) {
+            if (suit.equals(s)) {
+                this.suit = s;
+            }
+        }
     }
 
     public void setValue(String value) {
