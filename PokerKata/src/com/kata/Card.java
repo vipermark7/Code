@@ -4,16 +4,9 @@ import java.util.HashMap;
 public class Card {
     public String suit;
     public String value;
+    public int valueInt;
     public final HashMap<Object, Object> valueOrder = new HashMap<>();
     public String[] Suits = {"C", "D", "H", "S"};
-    //TODO: values need to be comparable
-
-    /*
-     Suits: C, H, D, S
-     2-10 = itself
-     J, Q, K, A = 11, 12, 13, 14
-    */
-
 
     // each card is two characters: value, then suit
     public Card() {
@@ -46,5 +39,23 @@ public class Card {
 
     public void setValue(String value) {
         this.value = value;
+        this.valueInt = (int) valueOrder.get(value);
+    }
+
+    public String getSuit() {
+        return this.suit;
+    }
+
+    public String getValue() {
+        return this.value;
+    }
+
+    /*
+    Suits: C, H, D, S
+    2-10 = itself
+    J, Q, K, A = 11, 12, 13, 14
+    */
+    public int getValueInt() {
+        return this.valueInt;
     }
 }

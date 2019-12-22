@@ -43,29 +43,29 @@ class PokerKata {
     /**
      * Sort hand by suit using a selection sort
      * Good for finding flushes
+
+     private static ArrayList<Card> sortBySuit(ArrayList<Card> hand) {
+     int min;
+     for (var i = 0; i < hand.size(); i++) {
+     min = i;
+
+     for (var j = i + 1; j < hand.size(); j++) {
+     var jValue = hand.get(j).getSuit();
+     var minValue = hand.get(min).getSuit();
+     if (jValue < minValue) {
+     min = j;
+     }
+     }
+
+     // swapping min and i using
+     // hand.set(*element to be replaced*, *new element*)
+     Card swap = hand.get(i);
+     hand.set(i, hand.get(min));
+     hand.set(min, swap);
+     }
+     return hand;
+     }
      **/
-    private static ArrayList<Card> sortBySuit(ArrayList<Card> hand) {
-        int min;
-        for (var i = 0; i < hand.size(); i++) {
-            min = i;
-
-            for (var j = i + 1; j < hand.size(); j++) {
-                var jValue = Integer.parseInt(hand.get(j).suit + "");
-                var minValue = Integer.parseInt(hand.get(min).value + "");
-                if (jValue < minValue) {
-                    min = j;
-                }
-            }
-
-            // swapping min and i using
-            // hand.set(*element to be replaced*, *new element*)
-            Card swap = hand.get(i);
-            hand.set(i, hand.get(min));
-            hand.set(min, swap);
-        }
-        return hand;
-    }
-
     /**
      * Sort hand by value using a selection sort
      * Good for finding straights
@@ -75,8 +75,9 @@ class PokerKata {
         for (int i = 0; i < hand.size(); i++) {
             min = i;
             for (var j = i + 1; j < hand.size(); j++) {
-                var jValue = Integer.parseInt(hand.get(j).value + "");
-                var minValue = Integer.parseInt(hand.get(min).value + "");
+                var jValue = hand.get(j).getValueInt();
+                //Integer.parseInt(hand.get(j).value + "");
+                var minValue = hand.get(min).getValueInt();
                 if (jValue < minValue) {
                     min = j;
                 }
@@ -92,11 +93,15 @@ class PokerKata {
 
     private boolean isStraight(ArrayList<Card> hand) {
         ArrayList<Card> sortedCards = sortByValue(hand);
+        Card firstCard = sortedCards.get(0);
+        Card lastCard = sortedCards.get(4);
+        if (lastCard.getValueInt() - firstCard.getValueInt() == 4) {
+            straight = true;
+        }
         return straight;
     }
 
     private boolean isFlush(ArrayList<Card> hand) {
-        ArrayList<Card> sortedCards = sortBySuit(hand);
         return flush;
     }
 
