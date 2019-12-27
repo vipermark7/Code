@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Game {
     ArrayList<Card> black = new ArrayList<>();
     ArrayList<Card> white = new ArrayList<>();
-
     boolean whiteWin = false;
     boolean blackWin = false;
 

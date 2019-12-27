@@ -1,17 +1,23 @@
 package com.kata;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Card {
     public String suit;
     public String value;
     public int valueInt;
     public int suitInt;
-    public final HashMap<Object, Object> valueOrder = new HashMap<>();
-    public final HashMap<Object, Object> suitOrder = new HashMap<>();
+    public final Map<Object, Object> valueOrder = new HashMap<>();
+    public final Map<Object, Object> suitOrder = new HashMap<>();
     public String[] Suits = {"C", "D", "H", "S"};
 
     // each card is two characters: value, then suit
     public Card() {
+        /*
+        Suits: C, H, D, S
+        2-10 = itself
+        J, Q, K, A = 11, 12, 13, 14
+        */
         valueOrder.put("2", 2);
         valueOrder.put("3", 3);
         valueOrder.put("4", 4);
@@ -26,15 +32,16 @@ public class Card {
         valueOrder.put("K", 13);
         valueOrder.put("A", 14);
 
-        // putting the suits in 
+        // putting the suits in
         suitOrder.put("S", 1);
         suitOrder.put("H", 2);
         suitOrder.put("D", 3);
         suitOrder.put("C", 4);
-    }
 
-    public boolean equals(Card x) {
-        return this.suit.equals(x.suit) && this.value.equals(x.value);
+        suit = "x";
+        value = "x";
+        suitInt = 0;
+        valueInt = 0;
     }
 
     public void setSuit(String suit) {
@@ -58,15 +65,6 @@ public class Card {
         this.value = value;
         this.valueInt = (int) valueOrder.get(value);
     }
-
-
-
-    /*
-    Suits: C, H, D, S
-    2-10 = itself
-    J, Q, K, A = 11, 12, 13, 14
-    */
-
 
     public String getValue() {
         return this.value;
