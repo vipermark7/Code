@@ -46,10 +46,6 @@ public class Card {
         return this.suit;
     }
 
-    public String getValue() {
-        return this.value;
-    }
-
     /*
     Suits: C, H, D, S
     2-10 = itself

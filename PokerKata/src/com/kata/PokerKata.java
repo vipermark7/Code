@@ -9,8 +9,8 @@ import java.util.Set;
 
 class PokerKata {
     //TODO: consider replacing methods that check for win, with if statements
-    boolean highCard, pair, twoPairs, threeOfAKind, straight,
-            flush, fullHouse, fourOfAKind, straightFlush = false;
+    //TODO: need to check for: highCard, pair, twoPairs, threeOfAKind, straight,
+    //        flush, fullHouse, fourOfAKind, straightFlush = false;
 
     private static ArrayList<String> parseHand(String handStr) {
         /* returns an array of strings representing cards from a string **/
@@ -26,18 +26,38 @@ class PokerKata {
         return hand;
     }
 
-    private static ArrayList<Card> makeIntoCards(ArrayList<String> parsed) {
-        /* Get a parsed string sorted into an ArrayList of Cards **/
-        // var hand1 = new ArrayList<Card>()
-        // var hand2 = new ArrayList<Card>()
-        var cards = new ArrayList<Card>();
-        for (var i : parsed) {
+    private static ArrayList<Card> blackHand(ArrayList<String> parsed) {
+        // Get a parsed string sorted into an ArrayList of Cards
+        var black = new ArrayList<Card>();
+
+        // only getting the last 5 cards because white cards are always last
+        var blackStrings = parsed.subList(0, 5);
+        for (var i : blackStrings) {
             Card card = new Card();
+            // set first character of string to value, and second to suit
             card.setValue(i.charAt(0) + "");
             card.setSuit(i.charAt(1) + "");
-            cards.add(card);
+            black.add(card);
         }
-        return cards;
+        return black;
+    }
+
+    private static ArrayList<Card> whiteHand(ArrayList<String> parsed) {
+        /* Get a parsed string sorted into an ArrayList of Cards **/
+        var white = new ArrayList<Card>();
+
+        // only getting the last 5 cards because white cards are always last
+        var whiteStrings = parsed.subList(5, 10);
+
+        for (var i : whiteStrings) {
+            Card card = new Card();
+            // set first character of string to value, and second to suit
+            card.setValue(i.charAt(0) + "");
+            card.setSuit(i.charAt(1) + "");
+
+            white.add(card);
+        }
+        return white;
     }
 
     /**
@@ -95,52 +115,72 @@ class PokerKata {
         ArrayList<Card> sortedCards = sortByValue(hand);
         Card firstCard = sortedCards.get(0);
         Card lastCard = sortedCards.get(4);
+        boolean straight = false;
         if (lastCard.getValueInt() - firstCard.getValueInt() == 4) {
             straight = true;
         }
         return straight;
     }
 
+    private static ArrayList<Card> makeIntoCards(ArrayList<String> parsed) {
+        /* Get a parsed string sorted into an ArrayList of Cards **/
+        // var hand1 = new ArrayList<Card>()
+        // var hand2 = new ArrayList<Card>()
+        var cards = new ArrayList<Card>();
+        for (var i : parsed) {
+            Card card = new Card();
+            card.setValue(i.charAt(0) + "");
+            card.setSuit(i.charAt(1) + "");
+            cards.add(card);
+        }
+        return cards;
+    }
+
     private boolean isFlush(ArrayList<Card> hand) {
+        var flush = false;
         return flush;
     }
 
     private static void printCardsForGame(String lineFromFile) {
         var parsed = parseHand(lineFromFile);
-        var cards = makeIntoCards(parsed);
-        for (var i : cards) {
+        var black = blackHand(parsed);
+        var white = whiteHand(parsed);
+        System.out.println("Black cards: ");
+        for (var i : black) {
+            System.out.print("Suit: " + i.suit + " ");
+            System.out.print("Value: " + i.value);
+            System.out.println();
+        }
+        System.out.println("White cards: ");
+        for (var i : white) {
             System.out.print("Suit: " + i.suit + " ");
             System.out.print("Value: " + i.value);
             System.out.println();
         }
     }
 
-    public static Set<Card> findDuplicates(ArrayList<Card> input) {
-        Set<Card> dupes = new HashSet<>();
-
-        for (int i = 0; i < input.size(); i++) {
-            for (int j = 1; j < input.size(); j++) {
-                if (input.get(i).equals(input.get(j)) && i != j) {
-                    // duplicate element found
-                    dupes.add(input.get(i));
-                }
-            }
+    public static Set<Integer> findSameValues(ArrayList<Card> input) {
+        // for one or more cards to be a "duplicate", only the value needs to be the same
+        Set<Integer> dupes = new HashSet<>();
+        for (var i : input) {
+            dupes.add(i.getValueInt());
         }
         return dupes;
     }
 
     public static boolean isPair(ArrayList<Card> hand) {
-        boolean isPair = false;
         // checking to see if we can find one card that is duplicated
-        if (findDuplicates(hand).size() == 1) {
+        var isPair = false;
+        if (findSameValues(hand).size() == 2) {
             isPair = true;
         }
         return isPair;
     }
 
-    public boolean threeOfAKind(ArrayList<Card> hand) {
-        // checking to see if we can find one card that is duplicated
-        if (findDuplicates(hand).size() == 2) {
+    public static boolean threeOfAKind(ArrayList<Card> hand) {
+        // checking to see if we can find two cards that are duplicated
+        var threeOfAKind = false;
+        if (findSameValues(hand).size() == 3) {
             threeOfAKind = true;
         }
         return threeOfAKind;
@@ -155,6 +195,6 @@ class PokerKata {
         }
         var testHand = parseHand("2H 2H AD 3D 2S");
         var testCards = makeIntoCards(testHand);
-        System.out.println(isPair(testCards));
+        System.out.println("Test hand is pair: " + isPair(testCards));
     }
 }
