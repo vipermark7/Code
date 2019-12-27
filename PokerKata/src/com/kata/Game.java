@@ -10,7 +10,11 @@ public class Game {
     //TODO: each line of the file is going to be considered a game
     ArrayList<Card> black, white;
     boolean whiteWin, blackWin;
-    String evalWhite, evalBlack, game, winner;
+    String evalWhite, evalBlack;
+
+    // winner[0] is Black or White, winner[1] is what they won with
+    // e.g. White wins. - with high card: Ace
+    String[] winner = new String[3];
 
     public static ArrayList<Card> blackHand(ArrayList<String> parsed) {
         // Get a parsed string sorted into an ArrayList of 5 black Cards
@@ -46,7 +50,7 @@ public class Game {
         return white;
     }
 
-    public static ArrayList<String> parseHand(String handStr) {
+    public static ArrayList<String> parseGame(String handStr) {
         /* returns an array of strings representing cards from a string **/
         var hand = new ArrayList<String>();
         for (var i : handStr.split("\\s")) {
@@ -108,10 +112,19 @@ public class Game {
     }
 
     //TODO: implement code to decide winner in a game given white and black hand :)
-    public static String winner(Game g) {
-        return "Black wins " + " with " + g.evalBlack;
-    }
+   public String[] setWinner() {
+        this.winner[0] =  ;
+        this.winner[1] = ;
+        this.winner[2] = ;
+   }
 
+   public String printWinner() {
+        return this.winner[0] +  "wins - " +
+                " with " + this.winner[1] + " : " + this.winner[2];
+    }
+    public String[] getWinner() {
+        return this.winner[];
+    }
 
     //Sort hand by suit using a selection sort
     //Good for finding flushes
@@ -227,12 +240,8 @@ public class Game {
         //  - A lower ranked unmatched card + 2 cards of the same rank + 2 cards of the same rank
         //  - 2 cards of the same rank + a middle ranked unmatched card + 2 cards of the same rank
         //  - 2 cards of the same rank + 2 cards of the same rank + a higher ranked unmatched card
-        var twoPair = false;
         var sorted = sortByValue(hand);
 
-        if (fourOfAKind(hand) || fullHouse(hand) || threeOfAKind(hand)) {
-            return twoPair;
-        }
 
         var h0 = sorted.get(0).getValueInt();
         var h1 = sorted.get(1).getValueInt();
@@ -243,9 +252,11 @@ public class Game {
         var a = h0 == h1 && h2 == h3;
         var b = h0 == h1 && h3 == h4;
         var c = h1 == h2 && h3 == h4;
+        if (fourOfAKind(hand) || fullHouse(hand) || threeOfAKind(hand)) {
+            return false;
+        }
         return (a || b || c);
     }
-
 
     public static boolean threeOfAKind(ArrayList<Card> hand) {
         // checking to see if we can find three cards that are duplicated
@@ -270,7 +281,7 @@ public class Game {
 
     public static boolean tie(String hand) {
         // we get a tie if all the values in the hand are the same
-        var parsed = parseHand(hand);
+        var parsed = parseGame(hand);
         var white = whiteHand(parsed);
         var black = blackHand(parsed);
 
@@ -289,9 +300,8 @@ public class Game {
         return whiteValues.equals(blackValues);
     }
 
-
     public static void printCardsForGame(String lineFromFile) {
-        var parsed = parseHand(lineFromFile);
+        var parsed = parseGame(lineFromFile);
         var black = blackHand(parsed);
         var white = whiteHand(parsed);
         System.out.println("Black cards: ");
@@ -311,15 +321,16 @@ public class Game {
     public Game() {
         // the variable hand is expected to be a string
         // from pokerhands.txt
-        ArrayList<String> parsed = parseHand(this.game);
         // TODO: blackHand() and whiteHand() need an ArrayList<String> 10 in length
-        this.black = blackHand(parsed);
-        this.white = whiteHand(parsed);
+        this.black = null;
+        this.white = null;
 
         this.evalWhite = "";
         this.evalBlack = "";
         this.whiteWin = false;
         this.blackWin = false;
-        this.winner = "";
+        this.winner[0] = "";
+        this.winner[1] = "";
+        this.winner[2] = "";
     }
 }

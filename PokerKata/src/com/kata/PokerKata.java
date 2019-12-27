@@ -17,7 +17,7 @@ class PokerKata {
         while (s.hasNextLine()) {
             Game g = new Game();
             String nl = s.nextLine();
-            var parsed = parseHand(nl);
+            var parsed = parseGame(nl);
             g.black = blackHand(parsed);
             g.white = whiteHand(parsed);
             g.evalWhite = evaluate(g.white);
@@ -25,7 +25,7 @@ class PokerKata {
             System.out.println(nl);
             g.printCardsForGame(nl);
         }
-        var testHand = parseHand("2H 2H AD 3D 2S");
+        var testHand = parseGame("2H 2H AD 3D 2S");
         var testCards = Game.makeIntoCards(testHand);
         System.out.println("Test hand is pair: " + Game.pair(testCards));
     }
