@@ -5,7 +5,9 @@ public class Card {
     public String suit;
     public String value;
     public int valueInt;
+    public int suitInt;
     public final HashMap<Object, Object> valueOrder = new HashMap<>();
+    public final HashMap<Object, Object> suitOrder = new HashMap<>();
     public String[] Suits = {"C", "D", "H", "S"};
 
     // each card is two characters: value, then suit
@@ -23,6 +25,12 @@ public class Card {
         valueOrder.put("Q", 12);
         valueOrder.put("K", 13);
         valueOrder.put("A", 14);
+
+        // putting the suits in 
+        suitOrder.put("S", 1);
+        suitOrder.put("H", 2);
+        suitOrder.put("D", 3);
+        suitOrder.put("C", 4);
     }
 
     public boolean equals(Card x) {
@@ -35,6 +43,15 @@ public class Card {
                 this.suit = s;
             }
         }
+        this.suitInt = (int) suitOrder.get(suit);
+    }
+
+    public String getSuit() {
+        return this.suit;
+    }
+
+    public int getSuitInt() {
+        return this.suitInt;
     }
 
     public void setValue(String value) {
@@ -42,15 +59,19 @@ public class Card {
         this.valueInt = (int) valueOrder.get(value);
     }
 
-    public String getSuit() {
-        return this.suit;
-    }
+
 
     /*
     Suits: C, H, D, S
     2-10 = itself
     J, Q, K, A = 11, 12, 13, 14
     */
+
+
+    public String getValue() {
+        return this.value;
+    }
+
     public int getValueInt() {
         return this.valueInt;
     }
