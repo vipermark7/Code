@@ -12,7 +12,8 @@ public class Game {
     boolean whiteWin, blackWin;
     String evalWhite, evalBlack;
 
-    // winner[0] is Black or White, winner[1] is what they won with
+    // winner[0] is Black or White, winner[1] is what they won with,
+    // winner[2] is additional info about the winning hand
     // e.g. White wins. - with high card: Ace
     String[] winner = new String[3];
 
@@ -112,18 +113,24 @@ public class Game {
     }
 
     //TODO: implement code to decide winner in a game given white and black hand :)
-   public String[] setWinner() {
-        this.winner[0] =  ;
+    public String[] setWinner() {
+        if (whiteWin) {
+            this.winner[0] = "White";
+            this.winner[1] = evalWhite;
+        }
+        if (blackWin) {
+            this.winner[0] = "Black";
+            this.winner[1] = evalBlack;
+        }
+
         this.winner[1] = ;
         this.winner[2] = ;
-   }
+    }
 
    public String printWinner() {
+       // e.g. White wins. - with high card: Ace
         return this.winner[0] +  "wins - " +
                 " with " + this.winner[1] + " : " + this.winner[2];
-    }
-    public String[] getWinner() {
-        return this.winner[];
     }
 
     //Sort hand by suit using a selection sort
