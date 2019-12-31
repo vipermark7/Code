@@ -6,7 +6,7 @@ public class Game {
 
     //TODO: each line of the file is going to be considered a game
     ArrayList<Card> black, white, winningHandCards;
-    public boolean whiteWin, blackWin;
+    public boolean whiteWin, blackWin, tie;
     public final Map handRankDict = Map.of(
             "high card", 1, "pair", 2, "two pair", 3, "three of a kind", 4, "straight",
             5, "flush", 6, "full house", 7, "four of a kind", 8, "straight flush", 9);
@@ -14,7 +14,11 @@ public class Game {
     // evalWin tells us whether white or black wins
     // winning hand desc tells
     int whiteHandRank, blackHandRank = 0;
-    String evalWhite, evalBlack, winningColor, winningHandEval, winSummary;
+    String evalWhite = "";
+    String evalBlack = "";
+    String winningColor = "";
+    String winningHandEval = "";
+    String winSummary = "";
 
     // winningColor is Black or White, winningHandEval is what they won with,
     // winSummary is additional info about the winning hand
@@ -281,8 +285,10 @@ public class Game {
     }
 
     public void setWinner(ArrayList<String> parsedLineFromFile) {
-        var black = blackHand(parsedLineFromFile);
-        var white = whiteHand(parsedLineFromFile);
+        var black = sortByValue(blackHand(parsedLineFromFile));
+        var blackHighCard = black.get(4).getValueInt();
+        var whiteHighCard = white.get(4).getValueInt();
+        var white = sortByValue(whiteHand(parsedLineFromFile));
         var whr = this.whiteHandRank;
         var bhr = this.blackHandRank;
         this.evalBlack = rankHand(black);
@@ -291,50 +297,56 @@ public class Game {
         bhr = (int) handRankDict.get(evalBlack);
 
         if (whr > bhr) {
-            whiteWin = true;
+            this.whiteWin = true;
         }
         if (bhr > whr) {
-            blackWin = true;
-        }
-        if (whr == bhr) {
-            // comparing the highest card in both hands
-            if (black.get(4).getValueInt() > white.get(4).getValueInt()) {
-                blackWin = true;
-            }
-            else {
-                whiteWin = true;
-            }
-        }
-        if (whiteWin) {
-            this.winningColor = "White";
-            this.winningHandEval = evalWhite;
-        }
-        if (blackWin) {
-            this.winningColor = "Black";
-            this.winningHandEval = evalBlack;
+            this.blackWin = true;
         }
         else {
-            this.winningColor = "Tie!";
+            // comparing the highest card in both hands
+            if (blackHighCard > whiteHighCard) {
+                this.blackWin = true;
+                this.winningHandCards = black;
+            }
+            else if (whiteHighCard > blackHighCard) {
+                this.whiteWin = true;
+                this.winningHandCards = white;
+            } else this.tie = true;
+        }
+        if (this.whiteWin) {
+            this.winningColor = "White";
+            this.winningHandEval = evalWhite;
+            this.winningHandCards = white;
+        }
+        if (this.blackWin) {
+            this.winningColor = "Black";
+            this.winningHandEval = evalBlack;
+            this.winningHandCards = black;
         }
         // e.g. with High Card (Ace)
         if (winningHandEval.equals("high card")) {
-            this.winSummary = winningHandCards.get(4).getValue();
+            sortByValue(this.winningHandCards);
+            this.winSummary = " " + this.winningHandCards.get(4).getValue();
+        }
+        if (winningHandEval.equals("full house")) {
+            sortByValue(this.winningHandCards);
+            this.winSummary = " " + this.winningHandCards.get(4).getValue();
         }
     }
 
     //TODO: implement code to decide winner in a game given white and black hand :)
 
-   public String printWinner() {
+   public void printWinner() {
        // e.g. White wins. - with high card: Ace
-       ArrayList<Card> whc = sortByValue(this.winningHandCards);
-       String winMessage = this.winningColor + " wins - with " + this.winningHandEval;
-       return winMessage + winSummary;
+       String winMessage = this.winningColor + " wins - with "
+               + this.winningHandEval + this.winSummary;
+       System.out.println(winMessage);
     }
 
-    public static boolean tie(ArrayList<String> parsed) {
+    public boolean tie(ArrayList<String> parsed) {
         // we get a tie if all the card values in the game are the same
-        var white = whiteHand(parsed);
-        var black = blackHand(parsed);
+        this.white = whiteHand(parsed);
+        this.black = blackHand(parsed);
 
         ArrayList<Integer> whiteValues = new ArrayList<>(5);
         ArrayList<Integer> blackValues = new ArrayList<>(5);
