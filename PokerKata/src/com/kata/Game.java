@@ -1,21 +1,24 @@
 package com.kata;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Game {
 
     //TODO: each line of the file is going to be considered a game
-    ArrayList<Card> black, white;
-    boolean whiteWin, blackWin;
-    String evalWhite, evalBlack;
+    ArrayList<Card> black, white, winningHandCards;
+    public boolean whiteWin, blackWin;
+    public final Map handRankDict = Map.of(
+            "high card", 1, "pair", 2, "two pair", 3, "three of a kind", 4, "straight",
+            5, "flush", 6, "full house", 7, "four of a kind", 8, "straight flush", 9);
 
-    // winner[0] is Black or White, winner[1] is what they won with,
-    // winner[2] is additional info about the winning hand
+    // evalWin tells us whether white or black wins
+    // winning hand desc tells
+    int whiteHandRank, blackHandRank = 0;
+    String evalWhite, evalBlack, winningColor, winningHandEval, winSummary;
+
+    // winningColor is Black or White, winningHandEval is what they won with,
+    // winSummary is additional info about the winning hand
     // e.g. White wins. - with high card: Ace
-    String[] winner = new String[3];
 
     public static ArrayList<Card> blackHand(ArrayList<String> parsed) {
         // Get a parsed string sorted into an ArrayList of 5 black Cards
@@ -66,7 +69,6 @@ public class Game {
     }
     public static ArrayList<Card> makeIntoCards(ArrayList<String> parsed) {
         /* Get a parsed string sorted into an ArrayList of Cards **/
-
         var cards = new ArrayList<Card>();
         for (var i : parsed) {
             Card card = new Card();
@@ -77,85 +79,23 @@ public class Game {
         return cards;
     }
 
-    public static Set<Integer> findSameValues(ArrayList<Card> input) {
+    public static ArrayList<Integer> findSameValues(ArrayList<Card> input) {
         // for one or more cards to be a "duplicate", only the value needs to be the same
-        Set<Integer> dupes = new HashSet<>();
-        for (var i : input) {
-            dupes.add(i.getValueInt());
+        var values = new ArrayList<Integer>();
+        for (var i: input) {
+            values.add(i.getValueInt());
+        }
+        var uniqueSet = new HashSet<Integer>();
+        var dupes = new ArrayList<Integer>();
+        for (var a : values) {
+            if (uniqueSet.contains(a)) {
+                dupes.add(a);
+            } else {
+                uniqueSet.add(a);
+            }
         }
         return dupes;
     }
-    public static String evaluate(ArrayList<Card> hand) {
-        if (pair(hand)) {
-            return "pair";
-        }
-        if (twoPair(hand)) {
-            return "Two Pair";
-        }
-        if (straight(hand)) {
-            return "Straight";
-        }
-        if (straightFlush(hand)) {
-            return "Straight Flush";
-        }
-        if (fullHouse(hand)) {
-            return "Full House";
-        }
-        if (threeOfAKind(hand)) {
-            return "Three of a Kind";
-        }
-        if (fourOfAKind(hand)) {
-            return "Four of a Kind";
-        }
-        else {
-            return "High Card";
-        }
-    }
-
-    //TODO: implement code to decide winner in a game given white and black hand :)
-    public String[] setWinner() {
-        if (whiteWin) {
-            this.winner[0] = "White";
-            this.winner[1] = evalWhite;
-        }
-        if (blackWin) {
-            this.winner[0] = "Black";
-            this.winner[1] = evalBlack;
-        }
-
-        this.winner[1] = ;
-        this.winner[2] = ;
-    }
-
-   public String printWinner() {
-       // e.g. White wins. - with high card: Ace
-        return this.winner[0] +  "wins - " +
-                " with " + this.winner[1] + " : " + this.winner[2];
-    }
-
-    //Sort hand by suit using a selection sort
-    //Good for finding flushes
-    public static ArrayList<Card> sortBySuit(ArrayList<Card> hand) {
-        int min;
-        for (var i = 0; i < hand.size(); i++) {
-            min = i;
-
-            for (var j = i + 1; j < hand.size(); j++) {
-                var jSuit = hand.get(j).getSuitInt();
-                var minSuit = hand.get(min).getSuitInt();
-                if (jSuit < minSuit) {
-                    min = j;
-                }
-            }
-            // swapping min and i using
-            // hand.set(*element to be replaced*, *new element*)
-            Card swap = hand.get(i);
-            hand.set(i, hand.get(min));
-            hand.set(min, swap);
-        }
-        return hand;
-    }
-
     /**
      * Sort hand by value using a selection sort
      * Good for finding straights
@@ -169,6 +109,28 @@ public class Game {
                 //Integer.parseInt(hand.get(j).value + "");
                 var minValue = hand.get(min).getValueInt();
                 if (jValue < minValue) {
+                    min = j;
+                }
+            }
+            // swapping min and i using
+            // hand.set(*element to be replaced*, *new element*)
+            Card swap = hand.get(i);
+            hand.set(i, hand.get(min));
+            hand.set(min, swap);
+        }
+        return hand;
+    }
+    //Sort hand by suit using a selection sort
+    //Good for finding flushes
+    public static ArrayList<Card> sortBySuit(ArrayList<Card> hand) {
+        int min;
+        for (var i = 0; i < hand.size(); i++) {
+            min = i;
+
+            for (var j = i + 1; j < hand.size(); j++) {
+                var jSuit = hand.get(j).getSuitInt();
+                var minSuit = hand.get(min).getSuitInt();
+                if (jSuit < minSuit) {
                     min = j;
                 }
             }
@@ -206,7 +168,7 @@ public class Game {
     }
 
     public static boolean fullHouse(ArrayList<Card> hand) {
-        // After sorting cards by suit, one of the two conditions a or b must be met:
+        // After sorting cards by value, one of the two conditions a or b must be met:
         // a: 3 lower ranked cards of same rank + 2 lower ranked cards of same rank
         // b: 2 lower ranked cards of same rank + 3 lower ranked cards of same rank
         var sorted = sortByValue(hand);
@@ -234,9 +196,12 @@ public class Game {
 
     // TODO: rule out that hand is better than pair (e.g two pair, full house)! :)
     public static boolean pair(ArrayList<Card> hand) {
-        // checking to see if we can find one card that is duplicated
+        // checking to see if we can find two duplicate cards
+        // unpair makes sure that our hand isn't actually better than a pair
+        var sorted = sortByValue(hand);
         var isPair = false;
-        if (findSameValues(hand).size() == 2) {
+        var unpair = twoPair(sorted) || fullHouse(sorted) || threeOfAKind(sorted) || fourOfAKind(sorted);
+        if (findSameValues(sorted).size() == 2 && unpair == false ) {
             isPair = true;
         }
         return isPair;
@@ -248,7 +213,6 @@ public class Game {
         //  - 2 cards of the same rank + a middle ranked unmatched card + 2 cards of the same rank
         //  - 2 cards of the same rank + 2 cards of the same rank + a higher ranked unmatched card
         var sorted = sortByValue(hand);
-
 
         var h0 = sorted.get(0).getValueInt();
         var h1 = sorted.get(1).getValueInt();
@@ -269,7 +233,7 @@ public class Game {
         // checking to see if we can find three cards that are duplicated
         var threeOfAKind = false;
         if (fourOfAKind(hand) || fullHouse(hand)) {
-            return threeOfAKind;
+            return false;
         }
         if (findSameValues(hand).size() == 3) {
             threeOfAKind = true;
@@ -286,9 +250,89 @@ public class Game {
         return fourOfAKind;
     }
 
-    public static boolean tie(String hand) {
-        // we get a tie if all the values in the hand are the same
-        var parsed = parseGame(hand);
+    public static String rankHand(ArrayList<Card> hand) {
+        if (pair(hand)) {
+            return "pair";
+        }
+        else if (twoPair(hand)) {
+            return "two pair";
+        }
+        else if (straight(hand)) {
+            return "straight";
+        }
+        else if (flush(hand)) {
+            return "flush";
+        }
+        else if (straightFlush(hand)) {
+            return "straight flush";
+        }
+        else if (fullHouse(hand)) {
+            return "full house";
+        }
+        else if (threeOfAKind(hand)) {
+            return "three of a kind";
+        }
+        else if (fourOfAKind(hand)) {
+            return "four of a kind";
+        }
+        else {
+            return "high card";
+        }
+    }
+
+    public void setWinner(ArrayList<String> parsedLineFromFile) {
+        var black = blackHand(parsedLineFromFile);
+        var white = whiteHand(parsedLineFromFile);
+        var whr = this.whiteHandRank;
+        var bhr = this.blackHandRank;
+        this.evalBlack = rankHand(black);
+        this.evalWhite = rankHand(white);
+        whr = (int) handRankDict.get(evalWhite);
+        bhr = (int) handRankDict.get(evalBlack);
+
+        if (whr > bhr) {
+            whiteWin = true;
+        }
+        if (bhr > whr) {
+            blackWin = true;
+        }
+        if (whr == bhr) {
+            // comparing the highest card in both hands
+            if (black.get(4).getValueInt() > white.get(4).getValueInt()) {
+                blackWin = true;
+            }
+            else {
+                whiteWin = true;
+            }
+        }
+        if (whiteWin) {
+            this.winningColor = "White";
+            this.winningHandEval = evalWhite;
+        }
+        if (blackWin) {
+            this.winningColor = "Black";
+            this.winningHandEval = evalBlack;
+        }
+        else {
+            this.winningColor = "Tie!";
+        }
+        // e.g. with High Card (Ace)
+        if (winningHandEval.equals("high card")) {
+            this.winSummary = winningHandCards.get(4).getValue();
+        }
+    }
+
+    //TODO: implement code to decide winner in a game given white and black hand :)
+
+   public String printWinner() {
+       // e.g. White wins. - with high card: Ace
+       ArrayList<Card> whc = sortByValue(this.winningHandCards);
+       String winMessage = this.winningColor + " wins - with " + this.winningHandEval;
+       return winMessage + winSummary;
+    }
+
+    public static boolean tie(ArrayList<String> parsed) {
+        // we get a tie if all the card values in the game are the same
         var white = whiteHand(parsed);
         var black = blackHand(parsed);
 
@@ -329,15 +373,14 @@ public class Game {
         // the variable hand is expected to be a string
         // from pokerhands.txt
         // TODO: blackHand() and whiteHand() need an ArrayList<String> 10 in length
-        this.black = null;
-        this.white = null;
-
+        this.black = new ArrayList<>();
+        this.white = new ArrayList<>();
         this.evalWhite = "";
         this.evalBlack = "";
         this.whiteWin = false;
         this.blackWin = false;
-        this.winner[0] = "";
-        this.winner[1] = "";
-        this.winner[2] = "";
+        this.winningColor = "";
+        this.winningHandEval = "";
+        this.winSummary = "";
     }
 }

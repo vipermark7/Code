@@ -20,10 +20,12 @@ class PokerKata {
             var parsed = parseGame(nl);
             g.black = blackHand(parsed);
             g.white = whiteHand(parsed);
-            g.evalWhite = evaluate(g.white);
-            g.evalBlack = evaluate(g.black);
+            g.evalWhite = rankHand(g.white);
+            g.evalBlack = rankHand(g.black);
+            g.setWinner(parsed);
+
             System.out.println(nl);
-            g.printCardsForGame(nl);
+            printCardsForGame(nl);
         }
         var testHand = parseGame("2H 2H AD 3D 2S");
         var testCards = Game.makeIntoCards(testHand);
