@@ -1,6 +1,7 @@
 package com.kata;
 
 import java.util.*;
+import com.kata.Card.*;
 
 public class Game {
 
@@ -286,9 +287,12 @@ public class Game {
 
     public void setWinner(ArrayList<String> parsedLineFromFile) {
         var black = sortByValue(blackHand(parsedLineFromFile));
+        var white = sortByValue(whiteHand(parsedLineFromFile));
         var blackHighCard = black.get(4).getValueInt();
         var whiteHighCard = white.get(4).getValueInt();
-        var white = sortByValue(whiteHand(parsedLineFromFile));
+        var blackHighCard2 = black.get(3).getValueInt();
+        var whiteHighCard2 = white.get(3).getValueInt();
+
         var whr = this.whiteHandRank;
         var bhr = this.blackHandRank;
         this.evalBlack = rankHand(black);
@@ -307,11 +311,27 @@ public class Game {
             if (blackHighCard > whiteHighCard) {
                 this.blackWin = true;
                 this.winningHandCards = black;
+                this.winSummary = " " + blackHighCard;
             }
             else if (whiteHighCard > blackHighCard) {
                 this.whiteWin = true;
                 this.winningHandCards = white;
-            } else this.tie = true;
+                this.winSummary = " " + whiteHighCard;
+            }
+            else if (whiteHighCard == blackHighCard) {
+                // the two high cards are equal, now we compare the next highest cards
+                if (blackHighCard2 > whiteHighCard2) {
+                    this.blackWin = true;
+                    this.winningHandCards = black;
+                    this.winSummary = " " + Card.valueOrderReversed.get(blackHighCard2);
+                }
+                else if (whiteHighCard2 > blackHighCard2) {
+                    this.whiteWin = true;
+                    this.winningHandCards = white;
+                    this.winSummary = " " + Card.valueOrderReversed.get(whiteHighCard2);
+                }
+            }
+            else this.tie = true;
         }
         if (this.whiteWin) {
             this.winningColor = "White";
@@ -324,13 +344,10 @@ public class Game {
             this.winningHandCards = black;
         }
         // e.g. with High Card (Ace)
-        if (winningHandEval.equals("high card")) {
-            sortByValue(this.winningHandCards);
-            this.winSummary = " " + this.winningHandCards.get(4).getValue();
-        }
         if (winningHandEval.equals("full house")) {
             sortByValue(this.winningHandCards);
-            this.winSummary = " " + this.winningHandCards.get(4).getValue();
+            this.winSummary = " " + this.winningHandCards.get(4).getValue()
+            + " over " + this.winningHandCards.get(0).getValue();
         }
     }
 
