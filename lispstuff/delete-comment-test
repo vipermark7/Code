@@ -1,0 +1,12 @@
+#lang racket
+(require string-util)
+(define snake-raw "/home/vipermark7/Desktop/snake_raw.rkt")
+
+(define lines-kept (file->lines snake-raw))
+(length lines-kept)
+
+(define lines-removed
+ (for/list ([line (file->lines snake-raw)])
+                    (when (starts-with? line ";")
+                      line)))
+(writeln (~a (length lines-removed) " lines removed!"))
