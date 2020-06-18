@@ -14,7 +14,7 @@
     },
     "dependencies": {
         "@progress-nativechat/nativescript-nativechat": "2.0.4",
-        "angular": "^1.7.8",
+        "angular": "^1.8.0",
         "kinvey-nativescript-sdk": "4.2.0",
         "nativescript-accelerometer": "2.0.1",
         "nativescript-background-http": "3.4.1",
