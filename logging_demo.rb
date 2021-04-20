@@ -33,3 +33,6 @@ end
 
 puts out_of_bounds(10, quotes)
 puts out_of_bounds(12, quotes)
+
+binding.pry
+out_of_bounds 9999, quotes
