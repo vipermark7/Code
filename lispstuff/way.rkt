@@ -19,6 +19,14 @@
 (define edit (new button%
                   [label "Edit"]
                   [parent frame]))
+                  
+(define add (new button%
+                  [label "Add"]
+                  [parent frame]))
+
+(define delete (new button%
+                  [label "Delete"]
+                  [parent frame]))
 
 ; Display GUI
 (send frame show #t)
