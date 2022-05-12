@@ -36,6 +36,23 @@
      (reduce + (for [col cols] (contains-word? word col)))
      (reduce + (for [row rows] (contains-word? word row))))))
 
+;;----------------------------------------------------------------
+;; another possible implementation of find-word from u/joshlemer
+(defn check-surrounding-words [row letter-idx word]
+    (let [possible-words [(above-or-below-letter (- letter-idx 1))
+                            (above-or-below-letter (- letter-idx 1) :above false)
+                            (subvec row 0 letter-idx)
+                            (subvec row (- letter-idx 1))]]
+        (boolean (some #(word-matches word %) possible-words))))
+
+(defn find-word [word & {:keys [matrix] :or {matrix data}}]
+    (let [first-letter (first word)
+            matched-words (for [row matrix
+                                [letter-idx letter] (map-indexed vector row)
+                                :when (and (= first-letter letter) (check-surrounding-words row letter-idx word))]
+                            1)]
+        (reduce + matched-words)))
+;;-----------------------------------------------------------------
 (print (find-word "HELLO")) ;; 2
 (print (find-word "WORLD")) ;; 1
 (print (find-word "BUZZ"))  ;; 2
