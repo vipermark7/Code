@@ -36,6 +36,10 @@
      (reduce + (for [col cols] (contains-word? word col)))
      (reduce + (for [row rows] (contains-word? word row))))))
 
+(print (find-word "HELLO")) ;; 2
+(print (find-word "WORLD")) ;; 1
+(print (find-word "BUZZ"))  ;; 2
+
 ;;----------------------------------------------------------------
 ;; another possible implementation of find-word from u/joshlemer
 (defn letter-column [letter-idx & {:keys [matrix] :or {matrix data}}]
@@ -66,6 +70,3 @@
                             1)]
         (reduce + matched-words)))
 ;;-----------------------------------------------------------------
-(print (find-word "HELLO")) ;; 2
-(print (find-word "WORLD")) ;; 1
-(print (find-word "BUZZ"))  ;; 2
