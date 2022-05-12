@@ -1,66 +1,41 @@
 (ns crossword
-  (:require [clojure.string :as str]
-            [clojure.set :as set]))
+  (:require [clojure.string :as str]))
 
-;; (mapv (fn [x] (str/split  (x 0) #" ")) data) 
-
-;; when we have a vector of vectors, each vector
-;; containing only a big string with all the letters
-;; in the row
-
-;; (apply str (flatten data))
-;; "AOTDLROWLCBMUMLUDRUJDBLJPAZHZZEFBCZELFHWRKULVPPGALBLPOPQBEMOPPJY"
-
-(def matrix
-  [["A" "O" "T" "D" "L" "R" "O" "W"]
-   ["L" "C" "B" "M" "U" "M" "L" "U"]
-   ["D" "R" "U" "J" "D" "B" "L" "J"]
-   ["B" "C" "Z" "E" "L" "F" "H" "W"]
-   ["R" "K" "U" "L" "V" "P" "P" "G"]
-   ["A" "L" "B" "L" "P" "O" "P" "Q"]
+(def matrix 
+  [["A" "O" "T" "D" "L" "R" "O" "W"] 
+   ["L" "C" "B" "M" "U" "M" "L" "U"] 
+   ["D" "R" "U" "J" "D" "B" "L" "J"] 
+   ["P" "A" "Z" "H" "Z" "Z" "E" "F"] 
+   ["B" "C" "Z" "E" "L" "F" "H" "W"] 
+   ["R" "K" "U" "L" "V" "P" "P" "G"] 
+   ["A" "L" "B" "L" "P" "O" "P" "Q"] 
    ["B" "E" "M" "O" "P" "P" "J" "Y"]])
 
-(def flat-data (apply str (flatten matrix)))
+(defn letter-column
+  "Get a column of letters, then return a list of the letters we care about
+   e.g 'H' is 4 down and 6 to the right counting from 0"
+  [column]
+  (mapv #(% column) matrix))
 
-(defn letter-column [letter-idx]
-  (mapv #(% letter-idx) matrix))
+(defn contains-word?
+  "Check if a given list of letters (could represent a row or column of letters)
+   contains `word` in either normal or reversed order"
+  [word letter-list]
+  (let [joined (str/join letter-list)]
+    (+
+     (if (str/includes? joined word) 1 0)
+     (if (str/includes? (str/reverse joined) word) 1 0))))
 
-;; letter-idx is an index from a vector of letters
-(defn above-letter [letter-idx]
-  (subvec (letter-column letter-idx) 0 letter-idx))
+(defn find-word
+  "Go through every column and row in our data and find how 
+   many times the word occurs either in normal order or reversed"
+  [word]
+  (let [cols (for [num (range (.length (matrix 0)))]  (letter-column num))
+        rows (for [row matrix] row)]
+    (+ 
+     (reduce + (for [col cols] (contains-word? word col)))
+     (reduce + (for [row rows] (contains-word? word row))))))
 
-(defn below-letter [letter-idx]
-  (subvec (letter-column letter-idx)
-          (count (letter-column letter-idx))))
-
-
-(defn check-surrounding-words [row letter-idx word]
-  (def surrounding-words {:up (or nil (above-letter letter-idx))
-                          :down  (or nil (below-letter letter-idx))
-                          :right (or nil (subvec row letter-idx))
-                          :left  (or nil (subvec row letter-idx (.length row)))})
-  ;(some #(word-matches word %) (vals surrounding-words)))
-  (def any-matches? (map (fn word-matches [word letter-list]
-                           (or (= word (str/lower-case (str/join (reverse letter-list))))
-                               (= word (str/lower-case (str/join letter-list)))))
-                         (vals surrounding-words)))
-  (contains? any-matches? true))
-
-(def letter-indices (map set/map-invert 
-                         (map-indexed hash-map flat-data)))
-
-(defn find-first-letters []
-  (filter #(= \H (key (first %))) letter-indices))
-
-(defn find-coords [row-length col-height idx]
-  {:x (mod idx row-length) 
-   :y (quot idx col-height)})
-
-(defn find-word [word matrix]
-  "Go through every letter in our data and find how 
-   many times the word occurs
-   either in normal order or reversed"
-
-  )
-  ;;(map clojure.set/map-invert (map-indexed hash-map flat-data))
-  ;;(for [row data] (mapv println row)))
+(print (find-word "HELLO")) ;; 2
+(print (find-word "WORLD")) ;; 1
+(print (find-word "BUZZ"))  ;; 2
