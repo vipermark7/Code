@@ -38,6 +38,19 @@
 
 ;;----------------------------------------------------------------
 ;; another possible implementation of find-word from u/joshlemer
+(defn letter-column [letter-idx & {:keys [matrix] :or {matrix data}}]
+    (into [] (map #(nth % letter-idx) matrix)))
+
+(defn above-or-below-letter [letter-idx & {:keys [above matrix] :or {above true matrix data}}]
+   (let [col (letter-column letter-idx matrix)]
+       (if above (subvec col 0 letter-idx) (subvec col letter-idx))))
+
+(defn word-matches [word letter-list]
+  (let [s (apply str letter-list)]
+    (or (clojure.string/includes? s word)
+        (clojure.string/includes? (clojure.string/reverse s) word))))
+
+
 (defn check-surrounding-words [row letter-idx word]
     (let [possible-words [(above-or-below-letter (- letter-idx 1))
                             (above-or-below-letter (- letter-idx 1) :above false)
