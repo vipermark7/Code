@@ -1,7 +1,0 @@
-#lang racket
-(require string-util)
-(define snake-raw (file->lines "/home/vipermark7/Desktop/snake_raw.rkt"))
-
-(define final-lines
-  (filter (not (starts-with? ";")) snake-raw))
-(writeln (~a (length final-lines) " total lines after removal"))
